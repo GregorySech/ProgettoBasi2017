@@ -8,9 +8,9 @@ and open the template in the editor.
 class index {
 
     public function getReservedAreaForm() {
-        echo    '<form method="POST" action="./registra.php">
-                    <span>Nomignolo:<input type ="text"/></span>
-                    <span>Password:<input type ="password"/></span>
+        echo    '<form method="POST" action="./login.php">
+                    <span>Nomignolo:<input type ="text"name="username"/></span>
+                    <span>Password:<input type ="password" name="password"/></span>
                     <input type="submit" value="Login"/>
                     <a href="./registra.php">Registrati</a>
                 </form>';
@@ -50,6 +50,13 @@ $page = new index();
     </head>
     <body>
         <?php
+        if ($_GET['errore'] == 'mancainput') {
+            echo "<p><font color=red>Mancano dei dati di input!</font></p>";
+        }
+        else
+            if ($_GET['errore'] == 'mancainput') {
+                echo "<p><font color=red>Mancano dei dati di input!</font></p>";
+            }
         if (empty($_SESSION['nome_utente'])) {
             $page->getNavBarNoSession();
           }

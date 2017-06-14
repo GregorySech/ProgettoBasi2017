@@ -11,4 +11,5 @@
  */
 class queries {
     public static $count_nomignoli = 'select count(*) from progettodb.utenti where nomignolo = ?';
+    public static $login = 'select * from progettodb.utenti where progettodb.utenti = ? and progettodb.password = ?';
 }
