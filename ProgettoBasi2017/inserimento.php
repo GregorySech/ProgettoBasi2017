@@ -54,14 +54,17 @@ and open the template in the editor.
         //Gestione errori di inserimento
         if ($_GET['errore'] == 'filminserito') {
             echo "<p><font color=red>Film già presente!</font></p>";
+            $page->getFormFilm();
         } 
         else
             if ($_GET['errore'] == 'registainserito') {
                 echo "<p><font color=red>Regista/attore già inserito!</font></p>";
+                $page->getFormAttore();
             }
             else
                 if ($_GET['errore'] == 'casainserita') {
                     echo "<p><font color=red>Casa cinematografica già inserita!</font></p>";
+                    $page->getFormCasaCinematografica();
                 }
         //Richiamo i form di inserimento
         if ($_GET['info'] == 'film') {
