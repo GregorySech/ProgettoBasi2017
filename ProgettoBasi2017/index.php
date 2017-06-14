@@ -21,6 +21,7 @@ class index {
         $this->getReservedAreaForm();
         echo '</div>';
     }
+    //Requisiti della pagina, il css
     public function requirements() {
         echo '<link href="./css/style.css" rel="stylesheet" type="text/css">';
     }
