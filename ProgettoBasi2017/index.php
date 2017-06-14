@@ -16,9 +16,14 @@ class index {
                 </form>';
     }
 
-    public function getNavBar() {
+    public function getNavBarNoSession() {
         echo '<div class="navbar"><h1>Cineforum</h1>';
         $this->getReservedAreaForm();
+        echo '</div>';
+    }
+    public function getNavBarSession() {
+        echo '<div class="navbar"><h1>Cineforum</h1>';
+        echo 'Bentornato ' & $_SESSION['nome_utente'];
         echo '</div>';
     }
     //Requisiti della pagina, il css
@@ -39,8 +44,21 @@ $page = new index();
     </head>
     <body>
         <?php
-        $page->getNavBar();
+        if (empty($_SESSION['nome_utente'])) {
+            $page->getNavBarNoSession();
+          }
+        else{
+            $page->getNavBarSession();
+        }
         ?>
+        <p><a href="film.php">Visualizza i film presenti</a></p>
+        <form action="ricerca.php" method="post">
+            <p>Scrivi la parola che deve essere ricercata nelle domande:</p> 
+            <input type="text" name="parola">
+            <p>
+            <input type="submit" value="Cerca">
+            </p>
+        </form>
         <div class="container">SWAG</div>
     </body>
 </html>
