@@ -9,7 +9,7 @@ class index {
 
     public function getReservedAreaForm() {
         echo    '<form method="POST" action="./login.php">
-                    <span>Nomignolo:<input type ="text"name="username"/></span>
+                    <span>Nomignolo:<input type ="text" name="username"/></span>
                     <span>Password:<input type ="password" name="password"/></span>
                     <input type="submit" value="Login"/>
                     <a href="./registra.php">Registrati</a>

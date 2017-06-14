@@ -8,16 +8,17 @@ if (empty($_POST['username']) || empty($_POST['password'])) {
 } else {
     try {
         // si controlla la validita' delle credenziali con la funzione definita nel database
-        $dbconn = utilities::$connect();
+        $dbconn = utilities::connect();
         $statement = $dbconn->prepare(queries::$login);
-        $statement->execute(array($_POST['login'], $_POST['password']));
+        $statement->execute(array($_POST['username'], $_POST['password']));
         $rec = $statement->fetch();
         // il risultato di creadenziali_valiede e' un booleano postgres, che corrisponde ad 
         // un booleano php
         if ($rec[0] == 1) {
-            header('Location:index.php');
-            session_start();                            // si crea una nuova sessione
+            // si crea una nuova sessione
+            session_start();   
             $_SESSION['nome_utente'] = $_POST['username']; // si inserisce il nome utente
+            header('Location:index.php');
         } else {
             header('Location:index.php?errore=invalide');
         }
