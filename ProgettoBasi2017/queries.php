@@ -10,5 +10,5 @@
  * Classe contenente le query dell'applicazione.
  */
 class queries {
-    
+    public static $count_nomignoli = 'select count(*) from progettodb.utenti where nomignolo = ?';
 }

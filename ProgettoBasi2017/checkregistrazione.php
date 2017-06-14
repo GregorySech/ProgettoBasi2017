@@ -6,14 +6,15 @@ and open the template in the editor.
 -->
 <?php
     require 'utilities.php';
+    require 'queries.php';
     //Controllo che siano presenti tutti i campi obbligatori
     if (empty($_POST['nomignolo']) || empty($_POST['password']) || empty($_POST['email'])) {
     header('Location:registra.php?errore=mancainput');
 } else {
     try {
-        $dbconn = getDBHost();
+        $dbconn = utilities::connect();
         // Controllo se è già presente un utente con quel nome
-        $statement = $dbconn->prepare('select count(*) from utenti where nomignolo = ?');
+        $statement = $dbconn->prepare(queries::$count_nomignoli);
         $statement->execute(array($_POST['nomignolo']));
         $rec = $statement->fetch();
         if ($rec[0] == 1) {
