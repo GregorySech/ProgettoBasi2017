@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Connection informations to Database
+ * Classe contenente informazioni sulla connessione alla base di dati 
+ * dell'applicazione
  *
- * @author gregory
  */
 class connection {
 
