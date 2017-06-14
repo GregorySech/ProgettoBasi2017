@@ -24,7 +24,7 @@ and open the template in the editor.
             $_SESSION['nome_utente'] = $_POST['login'];
             //Creo utente nel DB
             $stat = $dbconn->prepare('select nuovo_utente(?,?)');
-            $stat->execute(array($_POST['login'], $_POST['password']));
+            $stat->execute(array($_POST['nomignolo'], $_POST['password']));
             // si ridirige l'utente alla pagina centrale del sito.
             header('Location:index.php');
         }
