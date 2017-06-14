@@ -18,12 +18,12 @@ and open the template in the editor.
           }
           ?>
         <form method="POST" action="./checkregistrazione.php">
-            <span>Inserisci il Nomignolo:<input type ="text" name="nomignolo"/></span>
-            <span>Inserisci la password:<input type ="text" name="password"/></span>
-            <span>Inserisci il nome:<input type ="text" name="nome"/></span>
-            <span>Inserisci il cognome:<input type ="text" name="cognome"/></span>
-            <span>Inserisci la email:<input type ="text" name="email"/></span>
-            <span>Inserisci la data di nascita:<input type ="text" name="data"/></span>
+            <div>Inserisci il Nomignolo:<input type ="text" name="nomignolo"/></div>
+            <div>Inserisci la password:<input type ="text" name="password"/></div>
+            <div>Inserisci il nome:<input type ="text" name="nome"/></div>
+            <div>Inserisci il cognome:<input type ="text" name="cognome"/></div>
+            <div>Inserisci la email:<input type ="text" name="email"/></div>
+            <div>Inserisci la data di nascita:<input type ="text" name="data"/></div>
             <input type="submit" value="Registrati"/>
         </form>
     </body>
