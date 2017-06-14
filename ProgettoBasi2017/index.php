@@ -24,6 +24,12 @@ class index {
     public function getNavBarSession() {
         echo '<div class="navbar"><h1>Cineforum</h1>';
         echo 'Bentornato ' & $_SESSION['nome_utente'];
+        echo '<div>Inserisci un: </div>';
+        echo '<ol>';
+        echo '<li><a href="inserimento.php?info=film">Film</a></li>';
+        echo '<li><a href="inserimento.php?info=persona">Attore/Registra</a></li>';
+        echo '<li><a href="inserimento.php?info=casacinem">Casa cinematografica</a></li>';
+        echo '</ol>';
         echo '</div>';
     }
     //Requisiti della pagina, il css

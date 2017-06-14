@@ -11,12 +11,15 @@ and open the template in the editor.
     </head>
     <body>
         <!-- Stampe di eventuali errori di login -->
-        <?php  if ($_GET['errore'] == 'registra') {
+        <?php  
+        if ($_GET['errore'] == 'registra') {
             echo "<p><font color=red>Utente già registrato!</font></p>";
-          } elseif ($_GET['errore'] == 'mancainput') {
-            echo "<p><font color=red>I campi obbligatori sono nomignolo, password e email!</font>i</p>";
-          }
-          ?>
+        } 
+        else
+            if ($_GET['errore'] == 'mancainput') {
+                echo "<p><font color=red>I campi obbligatori sono nomignolo, password e email!</font>i</p>";
+            }
+        ?>
         <form method="POST" action="./checkregistrazione.php">
             <div>Inserisci il Nomignolo:<input type ="text" name="nomignolo"/></div>
             <div>Inserisci la password:<input type ="text" name="password"/></div>
