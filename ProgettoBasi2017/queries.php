@@ -11,5 +11,15 @@
  */
 class queries {
     public static $count_nomignoli = 'select count(*) from progettodb.utenti where nomignolo = ?';
-    public static $login = 'select * from progettodb.utenti where progettodb.utenti.nomignolo = ? and progettodb.utenti.psw = ?';
+    public static $login = 'select progettodb.login(?,?)';
+    /**
+    progettodb.new_user(
+    nomignolo text,
+    password text,
+    email text,
+    data_nascita date,
+    nome text,
+    cognome text)
+     */
+    public static $register = 'select progettodb.new_user(?, ?, ?, ?, ?, ?)';
 }
