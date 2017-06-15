@@ -21,7 +21,7 @@ class utilities {
     //Funzione per controllare se un utente è loggato o meno
     public static function checkLogin() {
         session_start();
-        if (empty($_SESSION['userID'])) {
+        if (empty($_SESSION['nome_utente'])) {
             header('Location:index.php');
         }
     }

@@ -10,16 +10,28 @@
  * Classe contenente le query dell'applicazione.
  */
 class queries {
+
     public static $count_nomignoli = 'select count(*) from progettodb.utenti where nomignolo = ?';
     public static $login = 'select progettodb.login(?,?)';
+
     /**
-    progettodb.new_user(
-    nomignolo text,
-    password text,
-    email text,
-    data_nascita date,
-    nome text,
-    cognome text)
+      progettodb.new_user(
+      nomignolo text,
+      password text,
+      email text,
+      data_nascita date,
+      nome text,
+      cognome text)
      */
     public static $register = 'select progettodb.new_user(?, ?, ?, ?, ?, ?)';
+
+    /**
+      progettodb.new_film(
+      t text,
+      ap integer,
+      tr text,
+      d integer)
+     */
+    public static $new_film = 'select progettodb.new_film(?, ?, ?, ?)';
+
 }
