@@ -29,9 +29,42 @@ class inserimento {
         
         echo '<div>';
         
-        echo 'Registi (<a href="inserimento.php?info=persona">nuovo regista</a>)';
+        echo 'Registi (<a href="inserimento.php?info=persona">nuovo regista</a>)<br>';
         
         $db = utilities::connect();
+        
+        foreach ($db->query(queries::$get_registi) as $regista){
+            echo '<div>';
+            echo $regista['nome'].' '.$regista['cognome'];
+            echo '<input type="checkbox" name="registi[]" value="'.$regista['idregista'].'"/>';
+            echo '</div>';
+        }
+        
+        
+        echo '</div>';
+        
+        echo '<div>';
+        
+        echo 'Attori (<a href="inserimento.php?info=persona">nuovo attore</a>)<br>';
+        
+        foreach ($db->query(queries::$get_attori) as $attore){
+            echo '<div>';
+            echo $attore['nome'].' '.$attore['cognome'];
+            echo '<input type="checkbox" name="attori[]" value="'.$attore['idattore'].'"/>';
+            echo '</div>';
+        }
+        
+        echo '</div>';
+        echo '<div>';
+        
+        echo 'Case Cinematografiche (<a href="inserimento.php?info=casacinem">nuova casa cinematografica</a>)<br>';
+        
+        foreach ($db->query(queries::$get_case_cinematografiche) as $casa){
+            echo '<div>';
+            echo $casa['nome'];
+            echo '<input type="checkbox" name="attori[]" value="'.$casa['idcasa'].'"/>';
+            echo '</div>';
+        }
         
         echo '</div>';
         
