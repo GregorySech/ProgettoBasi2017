@@ -32,7 +32,6 @@ require_once './utilities.php';
             utilities::getNavBarSession();
         }
         ?>
-        <p><a href="film.php">Visualizza i film presenti</a></p>
         <form action="ricerca.php" method="post">
             <p>Scrivi la parola che deve essere ricercata nelle domande:</p> 
             <input type="text" name="parola">
@@ -41,7 +40,23 @@ require_once './utilities.php';
             </p>
         </form>
         <div class="container">
-            <?php ?>
+            <div>Lista Film:</div>
+            <?php 
+            $delta = 5;
+            $rows = 0;
+            $cols = 0;
+            
+            $db = utilities::connect();
+            
+            foreach ( $db ->query(queries::$get_films) as $film) {
+                echo '<div>';
+                utilities::filmPreview($film['titolo'], $film['annoproduzione'], $film['idfilm'], $film['punteggio']);
+                echo '</div>';
+            }
+            
+            
+            
+            ?>
         </div>
     </body>
 </html>
