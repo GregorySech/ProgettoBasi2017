@@ -45,8 +45,8 @@ require 'queries.php';
             echo '</div>';
         }
         if (!empty($_SESSION['nome_utente'])) {
+            echo '<hr>';
             echo    '<form method = "POST" action = "./inserisci.php">
-                    <div>Recensione del film</div>
                     <div>Inserisci la valutazione della recensione</div>
                     <div class="rating">
                         <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
