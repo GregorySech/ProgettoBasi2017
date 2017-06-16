@@ -87,8 +87,8 @@ class utilities {
     public static function filmPreview($titolo, $annoproduzione, $idfilm, $punteggio){
         echo "<a href='./pagina_film.php?idfilm=$idfilm'>";
         echo '<span>';
-        echo "<div>$titolo ($annoproduzione) </div>";
-        echo "<div>Rating: $punteggio </div>";
+        echo "<div>$titolo ($annoproduzione) ";
+        echo "Rating: $punteggio </div>";
         echo '</span>';
         echo "</a>";
     }
