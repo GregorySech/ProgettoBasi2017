@@ -93,4 +93,13 @@ class utilities {
         echo '</span>';
         echo "</a>";
     }
+
+    public static function filmPreviewReduced($titolo, $annoproduzione, $voto, $idfilm){
+        echo "<a href='./pagina_film.php?idfilm=$idfilm'>";
+        echo '<span>';
+        echo "<div>$titolo ($annoproduzione) : $voto </div>";
+        echo '</span>';
+        echo "</a>";
+    }
+    
 }
