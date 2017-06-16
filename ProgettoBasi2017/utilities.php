@@ -84,10 +84,10 @@ class utilities {
         return $d && $d->format('Y-m-d') === $date;
     }
     
-    public static function filmPreview($titolo, $annoproduzione, $idfilm, $punteggio){
+    public static function filmPreview($titolo, $annoproduzione, $idfilm, $punteggio, $index){
         echo "<a href='./pagina_film.php?idfilm=$idfilm'>";
         echo '<span>';
-        echo "<div>$titolo ($annoproduzione) ";
+        echo "<div>$index - $titolo ($annoproduzione) ";
         echo "Rating: $punteggio </div>";
         echo '</span>';
         echo "</a>";
