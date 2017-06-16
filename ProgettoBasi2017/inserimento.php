@@ -77,7 +77,7 @@ class inserimento {
                         <div>Nome:<input type ="text" name = "nome"/></div>
                         <div>Cognome:<input type ="text" name = "cognome"/></div>
                         <div>Luogo nascita:<input type ="text" name = "luogo"/></div>
-                        <div>Data nascita:<input type ="date" name = "datanascita"/></div>
+                        <div>Data nascita (AAAA-MM-GG):<input type ="date" name = "datanascita"/></div>
                         <div>Attore <input type="checkbox" name="tipopersona" value="attore"/></div>
                         <div>Regista  <input type="checkbox" name="tipopersona" value="regista"/></div>
                         <input type="submit" value="Inserisci la persona" name="insertpersona"/>
@@ -90,7 +90,7 @@ class inserimento {
         echo '<form method="POST" action="./inserisci.php">
                         <div>Nome casa:<input type ="text" name = "nome"/></div>
                         <div>Luogo sede:<input type ="text" name = "luogo"/></div>
-                        <div>Data fondazione:<input type ="text" name = "datafondazione"/></div>
+                        <div>Data fondazione (AAAA-MM-GG):<input type ="text" name = "datafondazione"/></div>
                         <input type="submit" value="Inserisci la casa cinematografica" name="insertcc"/>
                                                 <input type="hidden" name="itype" value="casacine" />
 

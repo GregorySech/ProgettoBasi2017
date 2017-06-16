@@ -24,7 +24,18 @@ require 'queries.php';
         $idfilm = 1;
         $statement = $db->prepare(queries::$get_info_film);
         $statement -> execute(array($idfilm));
+        //Gestione errore
+        if ($_GET['errore'] == 'recensioneesistente') {
+            echo "<p><font color=red>Hai già recensito questo film!</font></p>";
+        } 
+        if ($_GET['errore'] == 'erroregenerico') {
+            echo "<p><font color=red>Errore di inserimento.</font></p>";
+        }
+        if ($_GET['errore'] == 'datimancanti') {
+            echo "<p><font color=red>Devi inserire tutti i dati</font></p>";
+        }
         
+        //Stampa delle informazioni del film
         foreach ($statement ->fetchAll() as $film){
             echo '<div>';
             echo '<p>Titolo: '.$film["titolo"].'</p><p>Anno produzione: '.$film["annoproduzione"].'</p><p>Trama: '.$film["trama"].'</p><p>Durata: '.$film["durata"].'</p><p>Punteggio recensioni: '.$film["punteggio"].'</p>';

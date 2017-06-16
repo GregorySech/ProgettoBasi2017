@@ -8,8 +8,10 @@ and open the template in the editor.
     require 'utilities.php';
     require 'queries.php';
     //Controllo che siano presenti tutti i campi obbligatori
-    if (empty($_POST['nomignolo']) || empty($_POST['password']) || empty($_POST['email'])) {
-    header('Location:registra.php?errore=mancainput');
+    if (empty($_POST['nomignolo']) || empty($_POST['password']) || empty($_POST['email']) || empty($_POST['data'])) {
+        header('Location:registra.php?errore=mancainput');
+        if(!utilities::validateDate($_POST['data']))
+            header('Location:registra.php?errore=erroreinput');
 } else {
     try {
         $dbconn = utilities::connect();
@@ -22,10 +24,10 @@ and open the template in the editor.
             header('Location:registra.php?errore=registrato');
         } else {
             session_start();
-            $_SESSION['nome_utente'] = $_POST['nomignolo'];
             //Creo utente nel DB
             $stat = $dbconn->prepare(queries::$register);
             $stat->execute(array($_POST['nomignolo'], $_POST['password'], $_POST['email'], $_POST['data'], $_POST['nome'], $_POST['cognome']));
+            $_SESSION['nome_utente'] = $_POST['nomignolo'];
             // si ridirige l'utente alla pagina centrale del sito.
             header('Location:index.php');
         }

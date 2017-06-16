@@ -59,7 +59,14 @@ if(!empty($_POST['itype'])){
                 $idfilm = $_POST['idfilm'];
                 
                 $statement = $db ->prepare(queries::$new_recensione);
-                $statement -> execute(array($_SESSION['nome_utente'],$idfilm,$ratings,$testo));
+                try{
+                    $statement -> execute(array($_SESSION['nome_utente'],$idfilm,$ratings,$testo));
+                } catch (PDOException $ex) {
+                    header('Location:pagina_film.php?errore=recensioneesistente');
+                }
+                catch (Exception $ex) {
+                    header('Location:pagina_film.php?errore=erroregenerico');
+                }
             }
             break;
         default : header('Location:inserimento.php?errore=insert'); break;

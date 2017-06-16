@@ -78,4 +78,9 @@ class utilities {
     public static function requirements() {
         echo '<link href="./css/style.css" rel="stylesheet" type="text/css">';
     }
+    
+    public static function validateDate($date){
+        $d = DateTime::createFromFormat('Y-m-d', $date);
+        return $d && $d->format('Y-m-d') === $date;
+    }
 }

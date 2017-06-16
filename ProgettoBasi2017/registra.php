@@ -22,10 +22,12 @@ require 'utilities.php';
         if ($_GET['errore'] == 'registra') {
             echo "<p><font color=red>Utente già registrato!</font></p>";
         } 
-        else
-            if ($_GET['errore'] == 'mancainput') {
-                echo "<p><font color=red>I campi obbligatori sono nomignolo, password e email!</font>i</p>";
-            }
+        if ($_GET['errore'] == 'mancainput') {
+            echo "<p><font color=red>I campi obbligatori sono nomignolo, password e email!</font>i</p>";
+        }
+        if ($_GET['errore'] == 'erroreinput') {
+            echo "<p><font color=red>Errore input nel form.</font>i</p>";
+        }
         ?>
         <form method="POST" action="./checkregistrazione.php">
             <div>Inserisci il Nomignolo:<input type ="text" name="nomignolo"/></div>
@@ -33,7 +35,7 @@ require 'utilities.php';
             <div>Inserisci il nome:<input type ="text" name="nome"/></div>
             <div>Inserisci il cognome:<input type ="text" name="cognome"/></div>
             <div>Inserisci la email:<input type ="text" name="email"/></div>
-            <div>Inserisci la data di nascita:<input type ="text" name="data"/></div>
+            <div>Inserisci la data di nascita (AAAA-MM-GG):<input type ="text" name="data"/></div>
             <input type="submit" value="Registrati"/>
         </form>
     </body>
