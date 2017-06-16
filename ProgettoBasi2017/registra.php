@@ -26,7 +26,7 @@ require 'utilities.php';
             echo "<p><font color=red>I campi obbligatori sono nomignolo, password e email!</font>i</p>";
         }
         if ($_GET['errore'] == 'erroreinput') {
-            echo "<p><font color=red>Errore input nel form.</font>i</p>";
+            echo "<p><font color=red>Errore input nel form.</font></p>";
         }
         ?>
         <form method="POST" action="./checkregistrazione.php">

@@ -10,10 +10,10 @@ and open the template in the editor.
     //Controllo che siano presenti tutti i campi obbligatori
     if (empty($_POST['nomignolo']) || empty($_POST['password']) || empty($_POST['email']) || empty($_POST['data'])) {
         header('Location:registra.php?errore=mancainput');
-        if(!utilities::validateDate($_POST['data']))
-            header('Location:registra.php?errore=erroreinput');
 } else {
     try {
+        if(!utilities::validateDate($_POST['data']))
+            header('Location:registra.php?errore=erroreinput');
         $dbconn = utilities::connect();
         // Controllo se è già presente un utente con quel nome
         $statement = $dbconn->prepare(queries::$count_nomignoli);
