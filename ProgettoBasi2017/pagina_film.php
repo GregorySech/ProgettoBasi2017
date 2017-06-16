@@ -52,7 +52,15 @@ require 'queries.php';
                     <div><input type = "submit" value = "Inserisci recensione" name = "inserisci"/></div>
                 </form>';
         }
-        //DA STAMPARE TUTTE LE RECENSIONI DEL FILM IN ORDINE DECRESCENTE PER DATA
+        //Stampe di tutte le recensioni presenti nel DB in base al film selezionato
+        $statement = $db->prepare(queries::$get_recensioni_film);
+        $statement -> execute(array($idfilm));
+        
+        foreach ($statement ->fetchAll() as $recensioni){
+            echo '<div>';
+            echo '<p>Nomignolo recensore: '.$recensioni["nomignolo"].'</p><p>Data recensione: '.$recensioni["datarecensione"].'</p><p>Voto: '.$recensioni["voto"].'</p><p>Testo: '.$recensioni["testo"].'</p>';
+            echo '</div>';
+        }
         ?>
     </body>
 </html>
