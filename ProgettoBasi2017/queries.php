@@ -56,4 +56,12 @@ class queries {
     
     public static $get_films = 'select f.titolo, f.annoproduzione, f.idfilm, f.punteggio from progettodb.film as f order by f.punteggio desc';
     
+    //non le ho testate
+    public static $get_info_utente = 'select nomignolo,nome,cognome,email,datanascita
+            from progettodb.utenti
+            where idutente=?';
+    public static $get_film_utente = 'select f.titolo,r.voto
+            from progettodb.film as f join progettodb.recensioni as r
+            where f.idfilm = r.idfilm and r.idutente = ?';
+    //fino a qui
 }
