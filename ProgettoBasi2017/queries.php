@@ -37,6 +37,12 @@ class queries {
       progettodb.progettodb.new_casacinem(n text, ap text, tr date)
      */
     public static $new_casacinem = 'select * progettodb.new_casacinem(?,?,?)';
+    /*progettodb.new_recensione(
+    nomignolo text,
+    idf integer,
+    score integer,
+    com text)*/
+    public static $new_recensione = 'select progettodb.new_recensione(?,?,?,?)';
     
     //Query per prendere i dati dal DB
     public static $get_info_film = 'select * from progettodb.film as f where f.idfilm = ?';

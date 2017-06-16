@@ -31,7 +31,7 @@ require 'queries.php';
             echo '</div>';
         }
         if (!empty($_SESSION['nome_utente'])) {
-            echo    '<form method = "POST" action = "./pagina_film.php">
+            echo    '<form method = "POST" action = "./inserisci.php">
                     <div>Recensione del film</div>
                     <div>Inserisci la valutazione della recensione</div>
                     <div class="rating">
@@ -48,8 +48,10 @@ require 'queries.php';
                         <div class="clear"></div>
                     </div>
                     <div>Inserisci il testo della recensione</div>
-                    <input type = "textarea" name = "testorecensione"></input>
+                    <textarea rows="4" cols="50" name="testorecensione"></textarea>
                     <div><input type = "submit" value = "Inserisci recensione" name = "inserisci"/></div>
+                    <input type="hidden" name="idfilm" value="'.$idfilm.'" />
+                    <input type="hidden" name="itype" value="recensione" />
                 </form>';
         }
         //Stampe di tutte le recensioni presenti nel DB in base al film selezionato
@@ -57,6 +59,7 @@ require 'queries.php';
         $statement -> execute(array($idfilm));
         
         foreach ($statement ->fetchAll() as $recensioni){
+            echo '<hr>';
             echo '<div>';
             echo '<p>Nomignolo recensore: '.$recensioni["nomignolo"].'</p><p>Data recensione: '.$recensioni["datarecensione"].'</p><p>Voto: '.$recensioni["voto"].'</p><p>Testo: '.$recensioni["testo"].'</p>';
             echo '</div>';

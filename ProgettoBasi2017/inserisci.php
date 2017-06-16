@@ -28,25 +28,38 @@ if(!empty($_POST['itype'])){
                 }
             break;
         case 'casacine':
-            if(empty($_POST['nome']))
+            if (empty($_POST['nome'])) {
                 header('Location:inserimento.php?errore=insert&info=casacinem');
-            else{
+            } else {
                 $db = utilities::connect();
                 $statement = $db->prepare(queries::$new_casacinem);
-                
+
                 $nome = $_POST['nome'];
                 $luogo = NULL;
                 $data = NULL;
-                if(!empty($_POST['luogo']))
+                if (!empty($_POST['luogo']))
                     $luogo = $_POST['luogo'];
-                if(!empty($_POST['datafondazione']))
+                if (!empty($_POST['datafondazione']))
                     $data = $_POST['datafondazione'];
-                try{
-                    $statement -> execute(array($nome,$luogo,$data));
+                try {
+                    $statement->execute(array($nome, $luogo, $data));
                     header('Location:inserimento.php?info=casainserita');
                 } catch (Exception $ex) {
                     header('Location:inserimento.php?errore=insertcasa&info=casacinem');
                 }
+            }
+            break;
+        case 'recensione':
+            if (empty($_POST['star']) || empty($_POST['testorecensione'])) {
+                header('Location:pagina_film.php?errore=datimancanti');
+            } else {
+                $db = utilities::connect();
+                $ratings = $_POST['star'];
+                $testo = $_POST['testorecensione'];
+                $idfilm = $_POST['idfilm'];
+                
+                $statement = $db ->prepare(queries::$new_recensione);
+                $statement -> execute(array($_SESSION['nome_utente'],$idfilm,$ratings,$testo));
             }
             break;
         default : header('Location:inserimento.php?errore=insert'); break;
