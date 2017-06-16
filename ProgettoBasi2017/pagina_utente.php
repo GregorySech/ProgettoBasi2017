@@ -16,7 +16,7 @@ require 'queries.php';
         session_start();
         $db = utilities::connect();
         
-        $idutente = $_GET['idutente'];
+        $idutente = $_GET['nome_utente'];
         
         $statement = $db->prepare(queries::$get_info_utente);
         $statement -> execute(array($idutente));
