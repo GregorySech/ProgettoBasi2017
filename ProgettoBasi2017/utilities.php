@@ -39,8 +39,9 @@ class utilities {
     }
     
     public static function defaultNavBar(){
-        echo '<div class="navbar"><a href = "index.php"><h1>Cineforum</h1></a></div>';
-        echo '<div><a href = "logout.php">Logout</a></div>';
+        echo    '<div class="navbar"><a href = "index.php"><h1>Cineforum</h1></a>
+                <p><a href = "logout.php">Logout</a></p>
+                </div>';
     }
     
     public static function getNavBarNoSession() {
@@ -73,6 +74,5 @@ class utilities {
     //Requisiti della pagina, il css
     public static function requirements() {
         echo '<link href="./css/style.css" rel="stylesheet" type="text/css">';
-        echo '<link href="//fonts.googleapis.com/css?family=Lato:400,900,400italic,700italic" rel="stylesheet">';
     }
 }
