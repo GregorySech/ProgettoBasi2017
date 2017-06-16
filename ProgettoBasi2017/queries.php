@@ -43,6 +43,9 @@ class queries {
     public static $get_registi = 'select * from progettodb.personecinematografiche as p join progettodb.registi as r on r.idregista = p.idpersona';
     public static $get_attori = 'select * from progettodb.attori as a join progettodb.personecinematografiche as p on a.idattore = p.idpersona;';
     public static $get_case_cinematografiche = 'select * from progettodb.casecinematografiche';
-    public static $get_recensioni_film = 'select u.nomignolo r.datarecensione r.voto r.testo from progettodb.recensioni as r join progettodb.utenti as u join progettodb.film as f on u.idutente = r.idutente and f.idfilm = r.idfilm where f.idfilm = ? order by r.datarecensione desc';
+    public static $get_recensioni_film = 'select u.nomignolo, r.datarecensione, r.voto, r.testo 
+            from progettodb.recensioni as r, progettodb.utenti as u, progettodb.film as f
+            where u.idutente = r.idutente and f.idfilm = r.idfilm and f.idfilm = ? 
+            order by r.datarecensione desc';
     
 }
