@@ -34,6 +34,9 @@ require 'queries.php';
         if ($_GET['errore'] == 'datimancanti') {
             echo "<p><font color=red>Devi inserire tutti i dati</font></p>";
         }
+        if ($_GET['info'] == 'ok') {
+            echo "<p><font color=red>Recensione aggiunta correttamente.</font></p>";
+        }
         
         //Stampa delle informazioni del film
         foreach ($statement ->fetchAll() as $film){
@@ -72,7 +75,7 @@ require 'queries.php';
         foreach ($statement ->fetchAll() as $recensioni){
             echo '<hr>';
             echo '<div>';
-            echo '<p>Nomignolo recensore: '.$recensioni["nomignolo"].'</p><p>Data recensione: '.$recensioni["datarecensione"].'</p><p>Voto: '.$recensioni["voto"].'</p><p>Testo: '.$recensioni["testo"].'</p>';
+            echo '<p>Nomignolo recensore: <a href="account.php?nomignolo='.$recensioni["nomignolo"].'">'.$recensioni["nomignolo"].'</a></p><p>Data recensione: '.$recensioni["datarecensione"].'</p><p>Voto: '.$recensioni["voto"].'</p><p>Testo: '.$recensioni["testo"].'</p>';
             echo '</div>';
         }
         ?>

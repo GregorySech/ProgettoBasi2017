@@ -61,6 +61,7 @@ if(!empty($_POST['itype'])){
                 $statement = $db ->prepare(queries::$new_recensione);
                 try{
                     $statement -> execute(array($_SESSION['nome_utente'],$idfilm,$ratings,$testo));
+                    header('Location:pagina_film.php?$idfilm='.$idfilm.'&info=ok');
                 } catch (PDOException $ex) {
                     header('Location:pagina_film.php?errore=recensioneesistente');
                 }
