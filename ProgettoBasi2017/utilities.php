@@ -83,4 +83,13 @@ class utilities {
         $d = DateTime::createFromFormat('Y-m-d', $date);
         return $d && $d->format('Y-m-d') === $date;
     }
+    
+    public static function filmPreview($titolo, $annoproduzione, $idfilm, $punteggio){
+        echo "<a href='./pagina_film.php?idfilm=$idfilm'>";
+        echo '<span>';
+        echo "<div>$titolo ($annoproduzione) </div>";
+        echo "<div>Rating: $punteggio </div>";
+        echo '</span>';
+        echo "</a>";
+    }
 }
