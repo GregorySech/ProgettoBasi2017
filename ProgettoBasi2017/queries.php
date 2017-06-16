@@ -64,4 +64,15 @@ class queries {
             from progettodb.film as f join progettodb.recensioni as r
             where f.idfilm = r.idfilm and r.idutente = ?';
     //fino a qui
+    
+    public static $get_registi_film = 'select pc.nome, pc.cognome 
+            from progettodb.direzioni as d, progettodb.personecinematografiche as pc
+            where d.film = ? and d.regista = pc.idpersona';
+    public static $get_attori_film = 'select pc.nome, pc.cognome 
+            from progettodb.recitazioni as c, progettodb.personecinematografiche as pc
+            where c.film = ? and c.attore = pc.idpersona';
+    public static $get_casecinematografiche_film = 'select cc.nome 
+            from progettodb.produzioni as p, progettodb.casecinematografiche as cc
+            where p.film = ? and p.casacinematografica = cc.idcasa';
+    
 }

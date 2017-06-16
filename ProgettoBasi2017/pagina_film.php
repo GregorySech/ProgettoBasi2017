@@ -49,6 +49,31 @@ require 'queries.php';
             echo '<p>Titolo: '.$film["titolo"].'</p><p>Anno produzione: '.$film["annoproduzione"].'</p><p>Trama: '.$film["trama"].'</p><p>Durata: '.$film["durata"].'</p><p>Punteggio recensioni: '.$film["punteggio"].'</p>';
             echo '</div>';
         }
+        //Stampa dei registi del film
+        $statement = $db->prepare(queries::$get_registi_film);
+        $statement -> execute(array($idfilm));
+        foreach ($statement ->fetchAll() as $registi){
+            echo '<div>';
+            echo '<p>Regista: '.$registi["nome"].' '.$registi["cognome"].'</p>';
+            echo '</div>';
+        }
+        //Stampa degli attori del film
+        $statement = $db->prepare(queries::$get_attori_film);
+        $statement -> execute(array($idfilm));
+        foreach ($statement ->fetchAll() as $attori){
+            echo '<div>';
+            echo '<p>Attore: '.$attori["nome"].' '.$attori["cognome"].'</p>';
+            echo '</div>';
+        }
+        //Stampa della casa cinematografica del film
+        $statement = $db->prepare(queries::$get_casecinematografiche_film);
+        $statement -> execute(array($idfilm));
+        foreach ($statement ->fetchAll() as $casecinematografiche){
+            echo '<div>';
+            echo '<p>Casa cinematografica: '.$casecinematografiche["nome"].'</p>';
+            echo '</div>';
+        }
+        //Stampa del form di inserimento della recensione se loggato
         if (!empty($_SESSION['nome_utente'])) {
             echo '<hr>';
             echo    '<form method = "POST" action = "./inserisci.php">
