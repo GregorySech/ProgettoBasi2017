@@ -54,7 +54,6 @@ class queries {
             where u.idutente = r.idutente and f.idfilm = r.idfilm and f.idfilm = ? 
             order by r.datarecensione desc';
     
-    public static $get_films = 'select f.titolo, f.annoproduzione, f.idfilm, f.punteggio '
-            . 'from progettodb.film as f';
+    public static $get_films = 'select f.titolo, f.annoproduzione, f.idfilm, f.punteggio from progettodb.film as f';
     
 }

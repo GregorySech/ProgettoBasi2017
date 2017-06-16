@@ -6,6 +6,7 @@ and open the template in the editor.
 -->
 <?php
 require_once './utilities.php';
+require_once './queries.php';
 ?>
 <html>
     <head>
