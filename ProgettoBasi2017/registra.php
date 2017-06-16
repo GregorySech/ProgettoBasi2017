@@ -8,10 +8,14 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Registrazione nuovo utente</title>
+        <?php
+        utilities::requirements();
+        ?>
     </head>
     <body>
         <!-- Stampe di eventuali errori di login -->
-        <?php  
+        <?php
+        utilities::defaultNavBar();
         if ($_GET['errore'] == 'registra') {
             echo "<p><font color=red>Utente già registrato!</font></p>";
         } 

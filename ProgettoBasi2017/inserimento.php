@@ -96,12 +96,6 @@ class inserimento {
 
                     </form>';
     }
-
-    //Requisiti della pagina, il css
-    public function requirements() {
-        echo '<link href="./css/style.css" rel="stylesheet" type="text/css">';
-    }
-
 }
 
 $page = new inserimento();
@@ -110,9 +104,13 @@ $page = new inserimento();
     <head>
         <meta charset="UTF-8">
         <title>Inserimento dati</title>
+        <?php
+        utilities::requirements();
+        ?>
     </head>
     <body>
         <?php
+        utilities::defaultNavBar();
         //Gestione errori di inserimento
         utilities::checkLogin();
         if ($_GET['errore'] == 'filminserito') {
