@@ -25,17 +25,22 @@ require 'queries.php';
         $statement = $db->prepare(queries::$get_info_film);
         $statement -> execute(array($idfilm));
         //Gestione errore
-        if ($_GET['errore'] == 'recensioneesistente') {
-            echo "<p><font color=red>Hai già recensito questo film!</font></p>";
-        } 
-        if ($_GET['errore'] == 'erroregenerico') {
-            echo "<p><font color=red>Errore di inserimento.</font></p>";
+        switch($_GET['errore']){
+            case 'recensioneesistente':
+                echo "<p><font color=red>Hai già recensito questo film!</font></p>";
+                break;
+            case 'erroregenerico':
+                echo "<p><font color=red>Errore di inserimento.</font></p>";
+                break;
+            case 'datimancanti':
+                echo "<p><font color=red>Devi inserire tutti i dati</font></p>";
+                break;
         }
-        if ($_GET['errore'] == 'datimancanti') {
-            echo "<p><font color=red>Devi inserire tutti i dati</font></p>";
-        }
-        if ($_GET['info'] == 'ok') {
-            echo "<p><font color=red>Recensione aggiunta correttamente.</font></p>";
+        
+        switch($_GET['info']){
+            case 'ok':
+                echo "<p><font color=red>Recensione aggiunta correttamente.</font></p>";
+                break;
         }
         
         //Stampa delle informazioni del film
@@ -69,8 +74,8 @@ require 'queries.php';
                 </form>';
         }
         //Stampe di tutte le recensioni presenti nel DB in base al film selezionato
-        $statement2 = $db->prepare(queries::$get_recensioni_film);
-        $statement2 -> execute(array($idfilm));
+        $statement = $db->prepare(queries::$get_recensioni_film);
+        $statement -> execute(array($idfilm));
         
         foreach ($statement ->fetchAll() as $recensioni){
             echo '<hr>';
