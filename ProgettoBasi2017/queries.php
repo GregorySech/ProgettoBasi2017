@@ -60,7 +60,7 @@ class queries {
     public static $get_info_utente = 'select nomignolo,nome,cognome,email,datanascita
             from progettodb.utenti
             where idutente=?';
-    public static $get_film_utente = 'select f.titolo,r.voto
+    public static $get_film_utente = 'select f.idfilm,f.titolo,f.annoproduzione,r.voto
             from progettodb.film as f join progettodb.recensioni as r
             where f.idfilm = r.idfilm and r.idutente = ?';
     //fino a qui
