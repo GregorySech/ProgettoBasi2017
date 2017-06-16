@@ -73,5 +73,6 @@ class utilities {
     //Requisiti della pagina, il css
     public static function requirements() {
         echo '<link href="./css/style.css" rel="stylesheet" type="text/css">';
+        echo '<link href="//fonts.googleapis.com/css?family=Lato:400,900,400italic,700italic" rel="stylesheet">';
     }
 }
