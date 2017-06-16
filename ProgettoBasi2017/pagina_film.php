@@ -69,8 +69,8 @@ require 'queries.php';
                 </form>';
         }
         //Stampe di tutte le recensioni presenti nel DB in base al film selezionato
-        $statement = $db->prepare(queries::$get_recensioni_film);
-        $statement -> execute(array($idfilm));
+        $statement2 = $db->prepare(queries::$get_recensioni_film);
+        $statement2 -> execute(array($idfilm));
         
         foreach ($statement ->fetchAll() as $recensioni){
             echo '<hr>';
