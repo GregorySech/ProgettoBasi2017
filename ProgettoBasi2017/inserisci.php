@@ -8,7 +8,7 @@ if(!empty($_POST['itype'])){
     switch ($_POST['itype']){
         case 'film': 
                 if(empty($_POST['titolo']) || empty($_POST['trama']))
-                    header('Location:index.php?errore=insert');
+                    header('Location:inserimento.php?errore=insert');
                 else{
                     $db = utilities::connect();
                     $statement = $db->prepare(queries::$new_film);
@@ -27,9 +27,31 @@ if(!empty($_POST['itype'])){
                     $statement ->execute(array($titolo, $anno, $trama, $durata));
                 }
             break;
-        default : header('Location:index.php?errore=insert'); break;
+        case 'casacine':
+            if(empty($_POST['nome']))
+                header('Location:inserimento.php?errore=insert&info=casacinem');
+            else{
+                $db = utilities::connect();
+                $statement = $db->prepare(queries::$new_casacinem);
+                
+                $nome = $_POST['nome'];
+                $luogo = NULL;
+                $data = NULL;
+                if(!empty($_POST['luogo']))
+                    $luogo = $_POST['luogo'];
+                if(!empty($_POST['datafondazione']))
+                    $data = $_POST['datafondazione'];
+                try{
+                    $statement -> execute(array($nome,$luogo,$data));
+                    header('Location:inserimento.php?info=casainserita');
+                } catch (Exception $ex) {
+                    header('Location:inserimento.php?errore=insertcasa&info=casacinem');
+                }
+            }
+            break;
+        default : header('Location:inserimento.php?errore=insert'); break;
     }
 }
 
-?>
+
 

@@ -90,7 +90,7 @@ class inserimento {
         echo '<form method="POST" action="./inserisci.php">
                         <div>Nome casa:<input type ="text" name = "nome"/></div>
                         <div>Luogo sede:<input type ="text" name = "luogo"/></div>
-                        <div>Data fondazione:<input type ="text" name = "datanascita"/></div>
+                        <div>Data fondazione:<input type ="text" name = "datafondazione"/></div>
                         <input type="submit" value="Inserisci la casa cinematografica" name="insertcc"/>
                                                 <input type="hidden" name="itype" value="casacine" />
 
@@ -117,27 +117,34 @@ $page = new inserimento();
         utilities::checkLogin();
         if ($_GET['errore'] == 'filminserito') {
             echo "<p><font color=red>Film già presente!</font></p>";
-            $page->getFormFilm();
         } else
         if ($_GET['errore'] == 'registainserito') {
             echo "<p><font color=red>Regista/attore già inserito!</font></p>";
-            $page->getFormAttore();
         } else
         if ($_GET['errore'] == 'casainserita') {
             echo "<p><font color=red>Casa cinematografica già inserita!</font></p>";
-            $page->getFormCasaCinematografica();
+        }
+        if ($_GET['errore'] == 'insert') {
+            echo "<p><font color=red>Errore di inserimento generico!</font></p>";
+        }
+        if ($_GET['errore'] == 'insertcasa') {
+            echo "<p><font color=red>Errore di inserimento casa cinematografica!</font></p>";
         }
         //Richiamo i form di inserimento
         if ($_GET['info'] == 'film') {
             echo "<p><font color=red>Inserisci i dati del Film</font></p>";
             $page->getFormFilm();
-        } else
+        }
         if ($_GET['info'] == 'persona') {
             echo "<p><font color=red>Inserisci i dati dell'attore/regista</font></p>";
             $page->getFormAttore();
-        } else
+        }
         if ($_GET['info'] == 'casacinem') {
             echo "<p><font color=red>Inserisci i dati della casa cinematografica</font></p>";
+            $page->getFormCasaCinematografica();
+        }
+        if ($_GET['info'] == 'casainserita') {
+            echo "<p><font color=red>Casa cinematografica inserita.</font></p>";
             $page->getFormCasaCinematografica();
         }
         ?>
