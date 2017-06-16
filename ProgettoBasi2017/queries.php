@@ -33,11 +33,14 @@ class queries {
       d integer)
      */
     public static $new_film = 'select progettodb.new_film(?, ?, ?, ?)';
-    public static $new_casacinem = 'select progettodb.new_casacinem(?,?,?)';
-
+    /**
+      progettodb.progettodb.new_casacinem(n text, ap text, tr date)
+     */
+    public static $new_casacinem = 'select * progettodb.new_casacinem(?,?,?)';
+    
+    //Query per prendere i dati dal DB
+    public static $get_info_film = 'select * from progettodb.film as f where f.idfilm = ?';
     public static $get_registi = 'select * from progettodb.personecinematografiche as p join progettodb.registi as r on r.idregista = p.idpersona';
     public static $get_attori = 'select * from progettodb.attori as a join progettodb.personecinematografiche as p on a.idattore = p.idpersona;';
     public static $get_case_cinematografiche = 'select * from progettodb.casecinematografiche';
-    
-    
 }

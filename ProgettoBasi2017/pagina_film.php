@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <?php
 require 'utilities.php';
-utilities::checkLogin();
+require 'queries.php';
 ?>
 <html>
     <head>
@@ -19,8 +19,19 @@ utilities::checkLogin();
     <body>
         <?php
         utilities::defaultNavBar();
-        //DA STAMPARE LE INFORMAZIONI RIGUARDANTI IL FIML
-        echo    '<form method = "POST" action = "./pagina_film.php">
+        session_start();
+        $db = utilities::connect();
+        $idfilm = 1;
+        $statement = $db->prepare(queries::$get_info_film);
+        $statement -> execute(array($idfilm));
+        
+        foreach ($statement ->fetchAll() as $film){
+            echo '<div>';
+            echo '<p>Titolo: '.$film["titolo"].'</p><p>Anno produzione: '.$film["annoproduzione"].'</p><p>Trama: '.$film["trama"].'</p><p>Durata: '.$film["durata"].'</p><p>Punteggio recensioni: '.$film["punteggio"].'</p>';
+            echo '</div>';
+        }
+        if (!empty($_SESSION['nome_utente'])) {
+            echo    '<form method = "POST" action = "./pagina_film.php">
                     <div>Recensione del film</div>
                     <div>Inserisci la valutazione della recensione</div>
                     <div class="rating">
@@ -40,7 +51,8 @@ utilities::checkLogin();
                     <input type = "textarea" name = "testorecensione"></input>
                     <div><input type = "submit" value = "Inserisci recensione" name = "inserisci"/></div>
                 </form>';
-        //DA STAMPARE TUTTE LE RECENSIONI DEL FILM IN ORDINE DECRESCENTE PER DAT
+        }
+        //DA STAMPARE TUTTE LE RECENSIONI DEL FILM IN ORDINE DECRESCENTE PER DATA
         ?>
     </body>
 </html>

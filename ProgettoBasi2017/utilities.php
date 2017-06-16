@@ -39,9 +39,12 @@ class utilities {
     }
     
     public static function defaultNavBar(){
-        echo    '<div class="navbar"><a href = "index.php"><h1>Cineforum</h1></a>
-                <p><a href = "logout.php">Logout</a></p>
-                </div>';
+        session_start();
+        echo    '<div class="navbar"><a href = "index.php"><h1>Cineforum</h1></a>';
+        if (!empty($_SESSION['nome_utente'])) {
+            echo    '<p><a href = "logout.php">Logout</a></p>';
+        }
+        echo    '</div>';
     }
     
     public static function getNavBarNoSession() {
