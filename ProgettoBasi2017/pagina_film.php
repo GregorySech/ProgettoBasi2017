@@ -21,7 +21,7 @@ require 'queries.php';
         utilities::defaultNavBar();
         session_start();
         $db = utilities::connect();
-        $idfilm = 1;
+        $idfilm = $_GET['idfilm'];
         $statement = $db->prepare(queries::$get_info_film);
         $statement -> execute(array($idfilm));
         //Gestione errore
