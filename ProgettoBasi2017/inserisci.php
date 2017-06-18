@@ -69,6 +69,32 @@ if(!empty($_POST['itype'])){
                 }
             }
             break;
+        case 'persona': 
+            if (empty($_POST['nome']) || empty($_POST['cognome'])){
+                $db = utilities::connect();
+                
+                $nome = $_POST['nome'];
+                $cognome = $_POST['cognome'];
+                $luogo = NULL;
+                $datanascita = NULL;
+                $attore = false;
+                $regista = false;
+                
+                if (!empty($_POST['luogo']))
+                    $luogo = $_POST['luogo'];
+                if (!empty($_POST['datanascita']))
+                    $luogo = $_POST['datanascita'];
+                if (!empty($_POST['isattore']))
+                    $attore = true;
+                if (!empty($_POST['isregista']))
+                    $regista = true;
+                
+                $statement = $db->prepare(queries::$new_persona);
+                
+                $statement ->execute(array($nome, $cognome, $luogo, $datanascita, $attore, $regista));
+                
+            }
+            break;
         default : header('Location:inserimento.php?errore=insert'); break;
     }
 }
