@@ -33,16 +33,27 @@ class queries {
       d integer)
      */
     public static $new_film = 'select progettodb.new_film(?, ?, ?, ?)';
+
     /**
       progettodb.progettodb.new_casacinem(n text, ap text, tr date)
      */
     public static $new_casacinem = 'select * progettodb.new_casacinem(?,?,?)';
-    /*progettodb.new_recensione(
-    nomignolo text,
-    idf integer,
-    score integer,
-    com text)*/
+    /* progettodb.new_recensione(
+      nomignolo text,
+      idf integer,
+      score integer,
+      com text) */
     public static $new_recensione = 'select progettodb.new_recensione(?,?,?,?)';
+    /*
+     * progettodb.new_person(
+      n text,
+      cn text,
+      bp text,
+      bd date,
+      actor boolean,
+      director boolean)
+     */
+    public static $new_persona = 'select progettodb.new_person(:name,:surname,:birthplace,:birthday,:actor,:director)';
     
     //Query per prendere i dati dal DB
     public static $get_info_film = 'select * from progettodb.film as f where f.idfilm = ?';
@@ -53,9 +64,7 @@ class queries {
             from progettodb.recensioni as r, progettodb.utenti as u, progettodb.film as f
             where u.idutente = r.idutente and f.idfilm = r.idfilm and f.idfilm = ? 
             order by r.datarecensione desc';
-    
     public static $get_films = 'select f.titolo, f.annoproduzione, f.idfilm, f.punteggio from progettodb.film as f order by f.punteggio desc';
-    
     //non le ho testate
     public static $get_info_utente = 'select nomignolo,nome,cognome,email,datanascita
             from progettodb.utenti
@@ -64,7 +73,7 @@ class queries {
             from progettodb.film as f join progettodb.recensioni as r
             where f.idfilm = r.idfilm and r.idutente = ?';
     //fino a qui
-    
+
     public static $get_registi_film = 'select pc.nome, pc.cognome 
             from progettodb.direzioni as d, progettodb.personecinematografiche as pc
             where d.film = ? and d.regista = pc.idpersona';
@@ -74,5 +83,5 @@ class queries {
     public static $get_casecinematografiche_film = 'select cc.nome 
             from progettodb.produzioni as p, progettodb.casecinematografiche as cc
             where p.film = ? and p.casacinematografica = cc.idcasa';
-    
+
 }

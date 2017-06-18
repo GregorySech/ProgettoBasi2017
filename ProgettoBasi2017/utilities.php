@@ -34,7 +34,7 @@ class utilities {
     public static function connect() {
         $dbconnection = new PDO(self::getDBHost(), self::$dbuser, self::$dbpassword);
         $dbconnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+        error_reporting(E_ALL & ~E_NOTICE);
         return $dbconnection;
     }
     

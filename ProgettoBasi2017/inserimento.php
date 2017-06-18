@@ -78,11 +78,10 @@ class inserimento {
                         <div>Cognome:<input type ="text" name = "cognome"/></div>
                         <div>Luogo nascita:<input type ="text" name = "luogo"/></div>
                         <div>Data nascita (AAAA-MM-GG):<input type ="date" name = "datanascita"/></div>
-                        <div>Attore <input type="checkbox" name="tipopersona" value="attore"/></div>
-                        <div>Regista  <input type="checkbox" name="tipopersona" value="regista"/></div>
+                        <div>Attore <input type="checkbox" name="isattore"/></div>
+                        <div>Regista  <input type="checkbox" name="isregista"/></div>
                         <input type="submit" value="Inserisci la persona" name="insertpersona"/>
-                                                <input type="hidden" name="itype" value="persona" />
-
+                        <input type="hidden" name="itype" value="persona" />
                     </form>';
     }
 
@@ -137,8 +136,8 @@ $page = new inserimento();
                 $page->getFormFilm();
                 break;
             case 'persona':
-                echo "<p><font color=red>Inserisci i dati del Film</font></p>";
-                $page->getFormFilm();
+                echo "<p><font color=red>Inserisci i dati della Persona Cinematografica</font></p>";
+                $page->getFormAttore();
                 break;
             case 'casacinem':
                 echo "<p><font color=red>Inserisci i dati della casa cinematografica</font></p>";
