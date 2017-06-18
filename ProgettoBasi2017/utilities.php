@@ -64,6 +64,7 @@ class utilities {
     public static function getNavBarSession() {
         echo '<div class="navbar"><h1>Cineforum</h1>';
         echo 'Bentornato ' . $_SESSION['nome_utente'];
+        echo '<div><a href = "pagina_utente.php?nomignolo='.$_SESSION['nome_utente'].'">Il mio account</a></div>';
         echo '<div><a href = "logout.php">Logout</a></div>';
         echo '<div>Inserisci un: </div>';
         echo '<ol>';
@@ -84,12 +85,21 @@ class utilities {
         return $d && $d->format('Y-m-d') === $date;
     }
     
-    public static function filmPreview($titolo, $annoproduzione, $idfilm, $punteggio){
+    public static function filmPreview($titolo, $annoproduzione, $idfilm, $punteggio, $index){
         echo "<a href='./pagina_film.php?idfilm=$idfilm'>";
         echo '<span>';
-        echo "<div>$titolo ($annoproduzione) </div>";
-        echo "<div>Rating: $punteggio </div>";
+        echo "<div>$index - $titolo ($annoproduzione) ";
+        echo "Rating: $punteggio </div>";
         echo '</span>';
         echo "</a>";
     }
+
+    public static function filmPreviewReduced($titolo, $annoproduzione, $voto, $idfilm){
+        echo "<a href='./pagina_film.php?idfilm=$idfilm'>";
+        echo '<span>';
+        echo "<div>$titolo ($annoproduzione) : $voto </div>";
+        echo '</span>';
+        echo "</a>";
+    }
+    
 }

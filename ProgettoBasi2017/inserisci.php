@@ -51,7 +51,7 @@ if(!empty($_POST['itype'])){
             break;
         case 'recensione':
             if (empty($_POST['star']) || empty($_POST['testorecensione'])) {
-                header('Location:pagina_film.php?errore=datimancanti');
+                header('Location:pagina_film.php?idfilm='.$idfilm.'&errore=datimancanti');
             } else {
                 $db = utilities::connect();
                 $ratings = $_POST['star'];
@@ -61,11 +61,12 @@ if(!empty($_POST['itype'])){
                 $statement = $db ->prepare(queries::$new_recensione);
                 try{
                     $statement -> execute(array($_SESSION['nome_utente'],$idfilm,$ratings,$testo));
+                    header('Location:pagina_film.php?idfilm='.$idfilm.'&info=ok');
                 } catch (PDOException $ex) {
-                    header('Location:pagina_film.php?errore=recensioneesistente');
+                    header('Location:pagina_film.php?idfilm='.$idfilm.'&errore=recensioneesistente');
                 }
                 catch (Exception $ex) {
-                    header('Location:pagina_film.php?errore=erroregenerico');
+                    header('Location:pagina_film.php?idfilm='.$idfilm.'&errore=erroregenerico');
                 }
             }
             break;

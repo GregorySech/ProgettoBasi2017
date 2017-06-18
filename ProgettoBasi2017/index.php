@@ -49,14 +49,13 @@ require_once './queries.php';
             
             $db = utilities::connect();
             
+            $index = 1;
             foreach ( $db ->query(queries::$get_films) as $film) {
-                echo '<div>';
-                utilities::filmPreview($film['titolo'], $film['annoproduzione'], $film['idfilm'], $film['punteggio']);
+                echo '<div> ';
+                utilities::filmPreview($film['titolo'], $film['annoproduzione'], $film['idfilm'], $film['punteggio'],$index);
                 echo '</div>';
+                $index++;
             }
-            
-            
-            
             ?>
         </div>
     </body>

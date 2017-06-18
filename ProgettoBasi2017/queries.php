@@ -54,6 +54,25 @@ class queries {
             where u.idutente = r.idutente and f.idfilm = r.idfilm and f.idfilm = ? 
             order by r.datarecensione desc';
     
-    public static $get_films = 'select f.titolo, f.annoproduzione, f.idfilm, f.punteggio from progettodb.film as f';
+    public static $get_films = 'select f.titolo, f.annoproduzione, f.idfilm, f.punteggio from progettodb.film as f order by f.punteggio desc';
+    
+    //non le ho testate
+    public static $get_info_utente = 'select nomignolo,nome,cognome,email,datanascita
+            from progettodb.utenti
+            where idutente=?';
+    public static $get_film_utente = 'select f.idfilm,f.titolo,f.annoproduzione,r.voto
+            from progettodb.film as f join progettodb.recensioni as r
+            where f.idfilm = r.idfilm and r.idutente = ?';
+    //fino a qui
+    
+    public static $get_registi_film = 'select pc.nome, pc.cognome 
+            from progettodb.direzioni as d, progettodb.personecinematografiche as pc
+            where d.film = ? and d.regista = pc.idpersona';
+    public static $get_attori_film = 'select pc.nome, pc.cognome 
+            from progettodb.recitazioni as c, progettodb.personecinematografiche as pc
+            where c.film = ? and c.attore = pc.idpersona';
+    public static $get_casecinematografiche_film = 'select cc.nome 
+            from progettodb.produzioni as p, progettodb.casecinematografiche as cc
+            where p.film = ? and p.casacinematografica = cc.idcasa';
     
 }
