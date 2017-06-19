@@ -37,7 +37,7 @@ class queries {
     /**
       progettodb.progettodb.new_casacinem(n text, ap text, tr date)
      */
-    public static $new_casacinem = 'select * progettodb.new_casacinem(?,?,?)';
+    public static $new_casacinem = 'select progettodb.new_casacinem(?,?,?)';
     /* progettodb.new_recensione(
       nomignolo text,
       idf integer,

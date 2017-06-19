@@ -7,6 +7,7 @@ and open the template in the editor.
 <?php
 require_once './utilities.php';
 require_once './queries.php';
+
 //checkLogin();
 class inserimento {
 
@@ -26,48 +27,48 @@ class inserimento {
                 Durata:<input type="text" name="durata"/>
                 </div>
             ';
-        
+
         echo '<div>';
-        
+
         echo 'Registi (<a href="inserimento.php?info=persona">nuovo regista</a>)<br>';
-        
+
         $db = utilities::connect();
-        
-        foreach ($db->query(queries::$get_registi) as $regista){
+
+        foreach ($db->query(queries::$get_registi) as $regista) {
             echo '<div>';
-            echo $regista['nome'].' '.$regista['cognome'];
-            echo '<input type="checkbox" name="registi[]" value="'.$regista['idregista'].'"/>';
+            echo $regista['nome'] . ' ' . $regista['cognome'];
+            echo '<input type="checkbox" name="registi[]" value="' . $regista['idregista'] . '"/>';
             echo '</div>';
         }
-        
-        
+
+
         echo '</div>';
-        
+
         echo '<div>';
-        
+
         echo 'Attori (<a href="inserimento.php?info=persona">nuovo attore</a>)<br>';
-        
-        foreach ($db->query(queries::$get_attori) as $attore){
+
+        foreach ($db->query(queries::$get_attori) as $attore) {
             echo '<div>';
-            echo $attore['nome'].' '.$attore['cognome'];
-            echo '<input type="checkbox" name="attori[]" value="'.$attore['idattore'].'"/>';
+            echo $attore['nome'] . ' ' . $attore['cognome'];
+            echo '<input type="checkbox" name="attori[]" value="' . $attore['idattore'] . '"/>';
             echo '</div>';
         }
-        
+
         echo '</div>';
         echo '<div>';
-        
+
         echo 'Case Cinematografiche (<a href="inserimento.php?info=casacinem">nuova casa cinematografica</a>)<br>';
-        
-        foreach ($db->query(queries::$get_case_cinematografiche) as $casa){
+
+        foreach ($db->query(queries::$get_case_cinematografiche) as $casa) {
             echo '<div>';
             echo $casa['nome'];
-            echo '<input type="checkbox" name="attori[]" value="'.$casa['idcasa'].'"/>';
+            echo '<input type="checkbox" name="attori[]" value="' . $casa['idcasa'] . '"/>';
             echo '</div>';
         }
-        
+
         echo '</div>';
-        
+
         echo '<input type="submit" value="Aggiungi" name="insertfilm"/>';
         echo '</form>';
     }
@@ -95,6 +96,7 @@ class inserimento {
 
                     </form>';
     }
+
 }
 
 $page = new inserimento();
@@ -112,7 +114,7 @@ $page = new inserimento();
         utilities::defaultNavBar();
         //Gestione errori di inserimento
         utilities::checkLogin();
-        switch($_GET['errore']){
+        switch ($_GET['errore']) {
             case 'filminserito':
                 echo "<p><font color=red>Film già presente!</font></p>";
                 break;
@@ -128,9 +130,15 @@ $page = new inserimento();
             case 'insertcasa':
                 echo "<p><font color=red>Errore di inserimento casa cinematografica!</font></p>";
                 break;
+            case 'nattorenregista':
+                echo "<p><font color=red>Una persona cinematografica deve essere perlomeno un attore o un regista!</font></p>";
+                break;
+            case 'pdo':
+                echo "<p><font color=red>PDOException!</font></p>";
+                break;
         }
         //Richiamo i form di inserimento
-        switch($_GET['info']){
+        switch ($_GET['info']) {
             case 'film':
                 echo "<p><font color=red>Inserisci i dati del Film</font></p>";
                 $page->getFormFilm();
@@ -146,6 +154,13 @@ $page = new inserimento();
             case 'casainserita':
                 echo "<p><font color=red>Casa cinematografica inserita.</font></p>";
                 $page->getFormCasaCinematografica();
+                break;
+            case 'personainserita':
+                echo "<p><font color=red>Persona cinematografica inserita.</font></p>";
+                $page->getFormAttore();
+                break;
+            default:
+
                 break;
         }
         ?>
