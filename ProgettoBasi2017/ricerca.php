@@ -12,7 +12,6 @@ and open the template in the editor.
     <body>
         <?php
             utilities::defaultNavBar();
-            utilities::getFooter();
         ?>
     </body>
 </html>

@@ -38,8 +38,5 @@ require 'utilities.php';
             <div>Inserisci la data di nascita (AAAA-MM-GG):<input type ="text" name="data"/></div>
             <input type="submit" value="Registrati"/>
         </form>
-        <?php
-        utilities::getFooter();
-        ?>
     </body>
 </html>

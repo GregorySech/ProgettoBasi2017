@@ -148,7 +148,6 @@ $page = new inserimento();
                 $page->getFormCasaCinematografica();
                 break;
         }
-        utilities::getFooter();
         ?>
     </body>
 </html>
