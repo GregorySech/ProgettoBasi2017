@@ -101,7 +101,7 @@ if (!empty($_POST['itype'])) {
             break;
         case 'persona':
             if (empty($_POST['nome']) || empty($_POST['cognome'])) {
-                echo 'casino zio';
+                header('Location:inserimento.php?errore=insert&info=persona');
             } else {
                 $db = utilities::connect();
 

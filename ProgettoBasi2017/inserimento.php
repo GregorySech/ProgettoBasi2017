@@ -49,50 +49,48 @@ class inserimento {
                             <input type="text" name="durata"/>
                         </td>
                     </tr>
-                </table>
             ';
 
-        echo '<div>';
-        echo '<hr>';
-        echo 'Registi (<a href="inserimento.php?info=persona">nuovo regista</a>)<br>';
+        echo '<td colspan ="2"><hr></td>';
 
+
+        echo '<tr>';
+        echo '<td colspan = "2">Registi (<a href="inserimento.php?info=persona">nuovo regista</a>)</td>';
+        echo '</tr>';
         $db = utilities::connect();
-        
+
         foreach ($db->query(queries::$get_registi) as $regista) {
-            echo '<div>';
-            echo $regista['nome'] . ' ' . $regista['cognome'];
-            echo '<input type="checkbox" name="registi[]" value="' . $regista['idregista'] . '"/>';
-            echo '</div>';
+            echo '<tr>';
+            echo '<td>' . $regista['nome'] . ' ' . $regista['cognome'] . '</td>';
+            echo '<td><input type="checkbox" name="registi[]" value="' . $regista['idregista'] . '"/></td>';
+            echo '</tr>';
         }
 
 
-        echo '</div>';
 
-        echo '<div>';
-        echo '<hr>';
-        echo 'Attori (<a href="inserimento.php?info=persona">nuovo attore</a>)<br>';
-
+        echo '<td colspan ="2"><hr></td>';
+        echo '<tr>';
+        echo '<td colspan="2">Attori (<a href="inserimento.php?info=persona">nuovo attore</a>)</td>';
+        echo '</tr>';
         foreach ($db->query(queries::$get_attori) as $attore) {
-            echo '<div>';
-            echo $attore['nome'] . ' ' . $attore['cognome'];
-            echo '<input type="checkbox" name="attori[]" value="' . $attore['idattore'] . '"/>';
-            echo '</div>';
+            echo '<tr>';
+            echo '<td>' . $attore['nome'] . ' ' . $attore['cognome'] . '</td>';
+            echo '<td><input type="checkbox" name="attori[]" value="' . $attore['idattore'] . '"/></td>';
+            echo '</tr>';
         }
 
-        echo '</div>';
-        echo '<hr>';
-        echo '<div>';
-
-        echo 'Case Cinematografiche (<a href="inserimento.php?info=casacinem">nuova casa cinematografica</a>)<br>';
-
+        echo '<td colspan ="2"><hr></td>';
+        echo '<tr>';
+        echo '<td colspan="2">Case Cinematografiche (<a href="inserimento.php?info=casacinem">nuova casa cinematografica</a>)</td>';
+        echo '</tr>';
         foreach ($db->query(queries::$get_case_cinematografiche) as $casa) {
-            echo '<div>';
-            echo $casa['nome'];
-            echo '<input type="checkbox" name="case[]" value="' . $casa['idcasa'] . '"/>';
-            echo '</div>';
+            echo '<tr>';
+            echo "<td>" . $casa['nome'] . "</td>";
+            echo '<td><input type="checkbox" name="case[]" value="' . $casa['idcasa'] . '"/></td>';
+            echo '</tr>';
         }
 
-        echo '</div>';
+        echo '</table>';
         echo '<br>';
         echo '<input type="submit" value="Aggiungi" name="insertfilm"/>';
         echo '</form>';
@@ -228,7 +226,7 @@ $page = new inserimento();
                 echo "<p><font color=red>Casa cinematografica già inserita!</font></p>";
                 break;
             case 'insert':
-                echo "<p><font color=red>Errore di inserimento generico!</font></p>";
+                echo "<p><font color=red>Errore di inserimento!</font></p>";
                 break;
             case 'insertcasa':
                 echo "<p><font color=red>Errore di inserimento casa cinematografica!</font></p>";
