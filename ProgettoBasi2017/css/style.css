@@ -6,6 +6,16 @@
     border: 1px solid red;
 }
 
+.footer {
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+    height: 20px;
+    width: 100%;
+    border: 2px solid blue;
+    background-color: red;
+}
+
 /*CSS PER LE STELLINE*/
 .txt-center {
     text-align: center;

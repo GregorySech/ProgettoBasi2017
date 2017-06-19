@@ -30,7 +30,7 @@ require 'queries.php';
         foreach ($statement ->fetchAll() as $film){
             utilities::filmPreviewReduced($film["titolo"],$film["annoproduzione"],$film["voto"],$film["idfilm"]);
         }
-        
+        utilities::getFooter();
         ?>
     </body>
 </html>

@@ -105,9 +105,10 @@ require 'queries.php';
         foreach ($statement ->fetchAll() as $recensioni){
             echo '<hr>';
             echo '<div>';
-            echo '<p>Nomignolo recensore: <a href="account.php?nomignolo='.$recensioni["nomignolo"].'">'.$recensioni["nomignolo"].'</a></p><p>Data recensione: '.$recensioni["datarecensione"].'</p><p>Voto: '.$recensioni["voto"].'</p><p>Testo: '.$recensioni["testo"].'</p>';
+            echo '<p>Nomignolo recensore: <a href="pagina_utente.php?nomignolo='.$recensioni["nomignolo"].'">'.$recensioni["nomignolo"].'</a></p><p>Data recensione: '.$recensioni["datarecensione"].'</p><p>Voto: '.$recensioni["voto"].'</p><p>Testo: '.$recensioni["testo"].'</p>';
             echo '</div>';
         }
+        utilities::getFooter();
         ?>
     </body>
 </html>

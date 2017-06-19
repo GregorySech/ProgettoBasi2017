@@ -75,6 +75,10 @@ class utilities {
         echo '</div>';
     }
     
+    public static function getFooter(){
+        echo '<div class ="footer">Creato da: Gregory Sech, Enrico Vettori, Elena Rossetto. Anno 2016/2017 Informatica Ca Foscari.</div>';
+    }
+    
     //Requisiti della pagina, il css
     public static function requirements() {
         echo '<link href="./css/style.css" rel="stylesheet" type="text/css">';

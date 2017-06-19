@@ -58,5 +58,8 @@ require_once './queries.php';
             }
             ?>
         </div>
+        <?php
+        utilities::getFooter();
+        ?>
     </body>
 </html>
