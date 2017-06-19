@@ -7,14 +7,17 @@ utilities::checkLogin();
 if (!empty($_POST['itype'])) {
     switch ($_POST['itype']) {
         case 'film':
-            if (empty($_POST['titolo']) || empty($_POST['trama']))
-                header('Location:inserimento.php?errore=insert');
+            if (empty($_POST['titolo']) || empty($_POST['trama']) || empty($_POST['durata']))
+                header('Location:inserimento.php?errore=insert&info=film');
             else {
                 $db = utilities::connect();
                 $statement = $db->prepare(queries::$new_film);
 
                 $titolo = $_POST['titolo'];
                 $trama = $_POST['trama'];
+                $attori = '{}';
+                $registi = '{}';
+                $case = '{}';
 
                 $durata = NULL;
                 if (!empty($_POST['durata']) && is_numeric($_POST['durata']))
@@ -22,9 +25,29 @@ if (!empty($_POST['itype'])) {
 
                 $anno = NULL;
                 if (!empty($_POST['anno']) && is_numeric($_POST['anno']))
-                    $durata = $_POST['anno'];
+                    $anno = $_POST['anno'];
 
-                $statement->execute(array($titolo, $anno, $trama, $durata));
+                if (isset($_POST['attori'])) {
+                    $attorip = $_POST['attori'];
+                    $attori = '{' . implode(',', $attorip) . '}';
+                }
+
+                if (isset($_POST['registi'])) {
+                    $registip = $_POST['registi'];
+                    $registi = '{' . implode(',', $registip) . '}';
+                }
+
+                if (isset($_POST['case'])) {
+                    $casep = $_POST['case'];
+                    $case = '{' . implode(',', $casep) . '}';
+                }
+
+                try {
+                    $statement->execute(array($titolo, $anno, $trama, $durata, $attori, $registi, $case));
+                    header('Location:inserimento.php?info=filminserito');
+                } catch (PDOException $pdoe) {
+                    echo 'PDO EXCEPTION';
+                }
             }
             break;
         case 'casacine':
