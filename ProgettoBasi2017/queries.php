@@ -65,6 +65,7 @@ class queries {
             where u.idutente = r.idutente and f.idfilm = r.idfilm and f.idfilm = ? 
             order by r.datarecensione desc';
     public static $get_films = 'select f.titolo, f.annoproduzione, f.idfilm, f.punteggio from progettodb.film as f order by f.punteggio desc';
+    public static $get_films_name = 'select f.titolo, f.annoproduzione, f.idfilm, f.punteggio from progettodb.film as f order by f.titolo asc';
     //non le ho testate
     public static $get_info_utente = 'select nomignolo,nome,cognome,email,datanascita
             from progettodb.utenti
@@ -83,5 +84,9 @@ class queries {
     public static $get_casecinematografiche_film = 'select cc.nome 
             from progettodb.produzioni as p, progettodb.casecinematografiche as cc
             where p.film = ? and p.casacinematografica = cc.idcasa';
-
+    
+    public static $get_result_search = "select *
+            from progettodb.film as f
+            where f.titolo ilike '%'||?||'%'
+            order by f.titolo";
 }
