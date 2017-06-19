@@ -30,7 +30,7 @@ include 'queries.php';
                 $statement->execute(array($stringacercata));
                 echo '<p>Risultati per ' . $stringacercata . '</p>';
                 foreach ($statement->fetchAll() as $parolacercata) {
-                    utilities::filmPreviewReduced($parolacercata['titolo'], $parolacercata['annoproduzione'], $parolacercata['punteggio'], $parolacercata['idfilm']);
+                    utilities::filmPreviewReduced($parolacercata['titolo'], $parolacercata['annoproduzione'], $parolacercata['punteggio'], $parolacercata['idfilm'], '');
                 }
             }
         } catch (Exception $ex) {
