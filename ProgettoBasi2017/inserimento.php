@@ -15,25 +15,49 @@ class inserimento {
 
         echo '<form method="POST" action="./inserisci.php">';
         echo '<input type="hidden" name="itype" value="film" />';
-        echo '  <div>
-                <span>Titolo:<input type ="text" name="titolo"/></span><br>
-                <span>Anno di Produzione:<input type ="text" name="anno"/></span>
-                </div>
-
-                <div>
-                Trama:<textarea name="trama" cols="50" rows="5"></textarea> 
-                </div>
-                <div>
-                Durata:<input type="text" name="durata"/>
-                </div>
+        echo '  
+                <table>
+                    <tr>
+                        <td>
+                            Titolo:
+                        </td>
+                        <td>
+                            <input type ="text" name="titolo"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Anno di Produzione:
+                        </td>
+                        <td>
+                            <input type ="text" name="anno"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Trama:
+                        </td>
+                        <td>
+                            <textarea name="trama" cols="50" rows="5"></textarea> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Durata:
+                        </td>
+                        <td>
+                            <input type="text" name="durata"/>
+                        </td>
+                    </tr>
+                </table>
             ';
 
         echo '<div>';
-
+        echo '<hr>';
         echo 'Registi (<a href="inserimento.php?info=persona">nuovo regista</a>)<br>';
 
         $db = utilities::connect();
-
+        
         foreach ($db->query(queries::$get_registi) as $regista) {
             echo '<div>';
             echo $regista['nome'] . ' ' . $regista['cognome'];
@@ -45,7 +69,7 @@ class inserimento {
         echo '</div>';
 
         echo '<div>';
-
+        echo '<hr>';
         echo 'Attori (<a href="inserimento.php?info=persona">nuovo attore</a>)<br>';
 
         foreach ($db->query(queries::$get_attori) as $attore) {
@@ -56,6 +80,7 @@ class inserimento {
         }
 
         echo '</div>';
+        echo '<hr>';
         echo '<div>';
 
         echo 'Case Cinematografiche (<a href="inserimento.php?info=casacinem">nuova casa cinematografica</a>)<br>';
@@ -68,33 +93,111 @@ class inserimento {
         }
 
         echo '</div>';
-
+        echo '<br>';
         echo '<input type="submit" value="Aggiungi" name="insertfilm"/>';
         echo '</form>';
     }
 
     public function getFormAttore() {
         echo '<form method="POST" action="./inserisci.php">
-                        <div>Nome:<input type ="text" name = "nome"/></div>
-                        <div>Cognome:<input type ="text" name = "cognome"/></div>
-                        <div>Luogo nascita:<input type ="text" name = "luogo"/></div>
-                        <div>Data nascita (AAAA-MM-GG):<input type ="date" name = "datanascita"/></div>
-                        <div>Attore <input type="checkbox" name="isattore"/></div>
-                        <div>Regista  <input type="checkbox" name="isregista"/></div>
-                        <input type="submit" value="Inserisci la persona" name="insertpersona"/>
-                        <input type="hidden" name="itype" value="persona" />
-                    </form>';
+                <table>
+                    <tr>
+                        <td>
+                            Nome:
+                        </td>
+                        <td>
+                            <input type ="text" name = "nome"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Cognome:
+                        </td>
+                        <td>
+                            <input type ="text" name = "cognome"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Luogo nascita:
+                        </td>
+                        <td>
+                            <input type ="text" name = "luogo"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Data nascita (AAAA-MM-GG):
+                        </td>
+                        <td>
+                            <input type ="date" name = "datanascita"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Attore:
+                        </td>
+                        <td>
+                            <input type="checkbox" name="isattore"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Regista:
+                        </td>
+                        <td>
+                            <input type="checkbox" name="isregista"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Inserisci la persona" name="insertpersona"/>
+                        </td>
+                        <td>
+                            <input type="hidden" name="itype" value="persona" />
+                        </td>
+                    </tr>
+                </table>
+            </form>';
     }
 
     public function getFormCasaCinematografica() {
         echo '<form method="POST" action="./inserisci.php">
-                        <div>Nome casa:<input type ="text" name = "nome"/></div>
-                        <div>Luogo sede:<input type ="text" name = "luogo"/></div>
-                        <div>Data fondazione (AAAA-MM-GG):<input type ="text" name = "datafondazione"/></div>
-                        <input type="submit" value="Inserisci la casa cinematografica" name="insertcc"/>
-                                                <input type="hidden" name="itype" value="casacine" />
-
-                    </form>';
+                    <table>
+                        <tr>
+                            <td>
+                                Nome casa:
+                            </td>
+                            <td>
+                                <input type ="text" name = "nome"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Luogo sede:
+                            </td>
+                            <td>
+                                <input type ="text" name = "luogo"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Data fondazione (AAAA-MM-GG):
+                            </td>
+                            <td>
+                                <input type ="text" name = "datafondazione"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Inserisci la casa cinematografica" name="insertcc"/>
+                            </td>
+                            <td>
+                                <input type="hidden" name="itype" value="casacine" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>';
     }
 
 }
