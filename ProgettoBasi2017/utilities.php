@@ -101,5 +101,4 @@ class utilities {
         echo '</span>';
         echo "</a>";
     }
-    
 }

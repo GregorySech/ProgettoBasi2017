@@ -33,12 +33,18 @@ require_once './queries.php';
             utilities::getNavBarSession();
         }
         ?>
-        <form action="ricerca.php" method="post">
-            <p>Scrivi la parola che deve essere ricercata nelle domande:</p> 
-            <input type="text" name="parola">
+        
+        <form action="ricerca.php" method="POST">
+            <p>Titolo del film da cercare:</p> 
+            <input type="text" name="parolacercata">
             <p>
                 <input type="submit" value="Cerca">
             </p>
+        </form>
+        
+        <form action="index.php" method="POST">
+            <input type="submit" value="Ordina per nome" name="ordinanome">
+            <input type="submit" value="Ordina per giudizio" name ="ordinagiudizio">
         </form>
         <div class="container">
             <div>Lista Film:</div>
@@ -50,11 +56,30 @@ require_once './queries.php';
             $db = utilities::connect();
             
             $index = 1;
-            foreach ( $db ->query(queries::$get_films) as $film) {
-                echo '<div> ';
-                utilities::filmPreview($film['titolo'], $film['annoproduzione'], $film['idfilm'], $film['punteggio'],$index);
-                echo '</div>';
-                $index++;
+            
+            if(!isset($_POST["ordinanome"]) && !isset($_POST["ordinagiudizio"])){
+                foreach ( $db ->query(queries::$get_films) as $film) {
+                    echo '<div> ';
+                    utilities::filmPreview($film['titolo'], $film['annoproduzione'], $film['idfilm'], $film['punteggio'],$index);
+                    echo '</div>';
+                    $index++;
+                }
+            }
+            
+            if (isset($_POST["ordinanome"])){
+                foreach ( $db ->query(queries::$get_films_name) as $film) {
+                    echo '<div> ';
+                    utilities::filmPreview($film['titolo'], $film['annoproduzione'], $film['idfilm'], $film['punteggio'],$index);
+                    echo '</div>';
+                    $index++;
+                }
+            } else if (isset($_POST["ordinagiudizio"])){
+                foreach ( $db ->query(queries::$get_films) as $film) {
+                    echo '<div> ';
+                    utilities::filmPreview($film['titolo'], $film['annoproduzione'], $film['idfilm'], $film['punteggio'],$index);
+                    echo '</div>';
+                    $index++;
+                }
             }
             ?>
         </div>
