@@ -37,21 +37,21 @@ class utilities {
         error_reporting(E_ALL & ~E_NOTICE);
         return $dbconnection;
     }
-    
-    public static function defaultNavBar(){
+
+    public static function defaultNavBar() {
         session_start();
-        echo    '<div class="navbar"><a href = "index.php"><h1>Cineforum</h1></a>';
+        echo '<div class="navbar"><a href = "index.php"><h1>Cineforum</h1></a>';
         if (!empty($_SESSION['nome_utente'])) {
-            echo    '<p><a href = "logout.php">Logout</a></p>';
+            echo '<p><a href = "logout.php">Logout</a></p>';
         }
-        echo    '</div>';
+        echo '</div>';
     }
-    
+
     public static function getNavBarNoSession() {
         echo '<div class="navbar"><h1>Cineforum</h1>';
         echo '</div>';
     }
-    
+
     public static function getReservedAreaForm() {
         echo '<form method="POST" action="./login.php">
                     <span>Nomignolo:<input type ="text" name="username"/></span>
@@ -64,7 +64,7 @@ class utilities {
     public static function getNavBarSession() {
         echo '<div class="navbar"><h1>Cineforum</h1>';
         echo 'Bentornato ' . $_SESSION['nome_utente'];
-        echo '<div><a href = "pagina_utente.php?nomignolo='.$_SESSION['nome_utente'].'">Il mio account</a></div>';
+        echo '<div><a href = "pagina_utente.php?nomignolo=' . $_SESSION['nome_utente'] . '">Il mio account</a></div>';
         echo '<div><a href = "logout.php">Logout</a></div>';
         echo '<div>Inserisci un: </div>';
         echo '<ol>';
@@ -74,18 +74,18 @@ class utilities {
         echo '</ol>';
         echo '</div>';
     }
-    
+
     //Requisiti della pagina, il css
     public static function requirements() {
         echo '<link href="./css/style.css" rel="stylesheet" type="text/css">';
     }
-    
-    public static function validateDate($date){
+
+    public static function validateDate($date) {
         $d = DateTime::createFromFormat('Y-m-d', $date);
         return $d && $d->format('Y-m-d') === $date;
     }
-    
-    public static function filmPreview($titolo, $annoproduzione, $idfilm, $punteggio, $index){
+
+    public static function filmPreview($titolo, $annoproduzione, $idfilm, $punteggio, $index) {
         echo "<a href='./pagina_film.php?idfilm=$idfilm'>";
         echo '<span>';
         echo "<div>$index - $titolo ($annoproduzione) ";
@@ -94,11 +94,12 @@ class utilities {
         echo "</a>";
     }
 
-    public static function filmPreviewReduced($titolo, $annoproduzione, $voto, $idfilm){
+    public static function filmPreviewReduced($titolo, $annoproduzione, $voto, $idfilm) {
         echo "<a href='./pagina_film.php?idfilm=$idfilm'>";
         echo '<span>';
         echo "<div>$titolo ($annoproduzione) : $voto </div>";
         echo '</span>';
         echo "</a>";
     }
+
 }

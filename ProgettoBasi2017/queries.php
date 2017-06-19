@@ -54,7 +54,6 @@ class queries {
       director boolean)
      */
     public static $new_persona = 'select progettodb.new_person(:name,:surname,:birthplace,:birthday,:actor,:director)';
-    
     //Query per prendere i dati dal DB
     public static $get_info_film = 'select * from progettodb.film as f where f.idfilm = ?';
     public static $get_registi = 'select * from progettodb.personecinematografiche as p join progettodb.registi as r on r.idregista = p.idpersona';
@@ -84,9 +83,9 @@ class queries {
     public static $get_casecinematografiche_film = 'select cc.nome 
             from progettodb.produzioni as p, progettodb.casecinematografiche as cc
             where p.film = ? and p.casacinematografica = cc.idcasa';
-    
     public static $get_result_search = "select *
             from progettodb.film as f
             where f.titolo ilike '%'||?||'%'
             order by f.titolo";
+
 }

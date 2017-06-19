@@ -113,7 +113,7 @@ if (!empty($_POST['itype'])) {
                     } catch (Exception $e) {
                         header('Location:inserimento.php?errore=insert&itype=persona');
                     }
-                }else {
+                } else {
                     header('Location:inserimento.php?errore=nattorenregista&itype=persona');
                 }
             }

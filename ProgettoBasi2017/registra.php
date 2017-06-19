@@ -21,7 +21,7 @@ require 'utilities.php';
         utilities::defaultNavBar();
         if ($_GET['errore'] == 'registra') {
             echo "<p><font color=red>Utente già registrato!</font></p>";
-        } 
+        }
         if ($_GET['errore'] == 'mancainput') {
             echo "<p><font color=red>I campi obbligatori sono nomignolo, password e email!</font>i</p>";
         }

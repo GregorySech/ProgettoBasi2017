@@ -5,14 +5,14 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-    require 'utilities.php';
-    require 'queries.php';
-    //Controllo che siano presenti tutti i campi obbligatori
-    if (empty($_POST['nomignolo']) || empty($_POST['password']) || empty($_POST['email']) || empty($_POST['data'])) {
-        header('Location:registra.php?errore=mancainput');
+require 'utilities.php';
+require 'queries.php';
+//Controllo che siano presenti tutti i campi obbligatori
+if (empty($_POST['nomignolo']) || empty($_POST['password']) || empty($_POST['email']) || empty($_POST['data'])) {
+    header('Location:registra.php?errore=mancainput');
 } else {
     try {
-        if(!utilities::validateDate($_POST['data']))
+        if (!utilities::validateDate($_POST['data']))
             header('Location:registra.php?errore=erroreinput');
         $dbconn = utilities::connect();
         // Controllo se è già presente un utente con quel nome

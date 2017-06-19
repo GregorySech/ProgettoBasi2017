@@ -16,7 +16,7 @@ if (empty($_POST['username']) || empty($_POST['password'])) {
         // un booleano php
         if ($rec[0] == 1) {
             // si crea una nuova sessione
-            session_start();   
+            session_start();
             $_SESSION['nome_utente'] = $_POST['username']; // si inserisce il nome utente
             header('Location:index.php');
         } else {
