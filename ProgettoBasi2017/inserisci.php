@@ -39,12 +39,19 @@ if (!empty($_POST['itype'])) {
                 $data = NULL;
                 if (!empty($_POST['luogo']))
                     $luogo = $_POST['luogo'];
+
                 if (!empty($_POST['datafondazione']))
                     $data = $_POST['datafondazione'];
+
+                echo 'Ora provo ad inserire\n';
+                echo "{nome: $nome, luogo: $luogo, data: $data}";
+
+
                 try {
                     $statement->execute(array($nome, $luogo, $data));
                     header('Location:inserimento.php?info=casainserita');
                 } catch (Exception $ex) {
+                    echo $ex->getTraceAsString();
                     header('Location:inserimento.php?errore=insertcasa&info=casacinem');
                 }
             }
@@ -70,11 +77,9 @@ if (!empty($_POST['itype'])) {
             }
             break;
         case 'persona':
-            echo 'SIAMO IN PERSONA';
             if (empty($_POST['nome']) || empty($_POST['cognome'])) {
                 echo 'casino zio';
-            }
-            else{
+            } else {
                 $db = utilities::connect();
 
                 $nome = $_POST['nome'];
@@ -86,24 +91,31 @@ if (!empty($_POST['itype'])) {
 
                 if (!empty($_POST['luogo']))
                     $luogo = $_POST['luogo'];
-                
-                if (!empty($_POST['datanascita']))
-                    $luogo = $_POST['datanascita'];
-                
-                if (!empty($_POST['isattore'])){
-                    $attore = 'true';
-                    echo 'sto qua seo attore!';
-                }
-                
-                if (!empty($_POST['isregista'])){
-                    $regista = 'true';
-                    echo 'sto qua seo regista!';
-                }
-                
-                $statement = $db->prepare(queries::$new_persona);
 
-                $statement->execute(array(':name' => $nome,':surname' => $cognome,':birthplace' => $luogo,':birthday' => $datanascita,':actor' => $attore,':director' => $regista));
-                echo 'tutto bene';
+                if (!empty($_POST['datanascita']))
+                    $datanascita = $_POST['datanascita'];
+
+                if (!empty($_POST['isattore'])) {
+                    $attore = 'true';
+                }
+
+                if (!empty($_POST['isregista'])) {
+                    $regista = 'true';
+                }
+                if ($attore == 'true' || $regista == 'true') {
+                    $statement = $db->prepare(queries::$new_persona);
+
+                    try {
+                        $statement->execute(array(':name' => $nome, ':surname' => $cognome, ':birthplace' => $luogo, ':birthday' => $datanascita, ':actor' => $attore, ':director' => $regista));
+                        header('Location:inserimento.php?info=personainserita');
+                    } catch (PDOException $pdoe) {
+                        header('Location:inserimento.php?errore=pdo&itype=persona');
+                    } catch (Exception $e) {
+                        header('Location:inserimento.php?errore=insert&itype=persona');
+                    }
+                }else {
+                    header('Location:inserimento.php?errore=nattorenregista&itype=persona');
+                }
             }
             break;
         default : header('Location:inserimento.php?errore=insert');
