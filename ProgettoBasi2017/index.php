@@ -33,7 +33,7 @@ require_once './queries.php';
             utilities::getNavBarSession();
         }
         ?>
-
+        <hr>
         <form action="ricerca.php" method="POST">
             <p>Titolo del film da cercare:</p> 
             <input type="text" name="parolacercata">
@@ -41,12 +41,13 @@ require_once './queries.php';
                 <input type="submit" value="Cerca">
             </p>
         </form>
-
+        <hr>
         <form action="index.php" method="POST">
             <input type="submit" value="Ordina per nome" name="ordinanome">
             <input type="submit" value="Ordina per giudizio" name ="ordinagiudizio">
         </form>
-        <div class="container">
+        <br>
+        <div>
             <div>Lista Film:</div>
             <?php
             $delta = 5;

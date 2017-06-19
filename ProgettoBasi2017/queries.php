@@ -65,14 +65,14 @@ class queries {
             order by r.datarecensione desc';
     public static $get_films = 'select f.titolo, f.annoproduzione, f.idfilm, f.punteggio from progettodb.film as f order by f.punteggio desc';
     public static $get_films_name = 'select f.titolo, f.annoproduzione, f.idfilm, f.punteggio from progettodb.film as f order by f.titolo asc';
-    //non le ho testate
-    public static $get_info_utente = 'select nomignolo,nome,cognome,email,datanascita
+    
+    public static $get_info_utente = 'select *
             from progettodb.utenti
-            where idutente=?';
-    public static $get_film_utente = 'select f.idfilm,f.titolo,f.annoproduzione,r.voto
-            from progettodb.film as f join progettodb.recensioni as r
-            where f.idfilm = r.idfilm and r.idutente = ?';
-    //fino a qui
+            where nomignolo = ?';
+
+    public static $get_film_utente = 'select f.idfilm,f.titolo,f.annoproduzione,r.voto,r.testo
+            from progettodb.film as f join progettodb.recensioni as r on f.idfilm = r.idfilm
+            where r.idutente = ?';
 
     public static $get_registi_film = 'select pc.nome, pc.cognome 
             from progettodb.direzioni as d, progettodb.personecinematografiche as pc

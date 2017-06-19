@@ -16,19 +16,23 @@ require 'queries.php';
         session_start();
         $db = utilities::connect();
 
-        $idutente = $_GET['nome_utente'];
+        $nomignolo = $_GET['nomignolo'];
 
         $statement = $db->prepare(queries::$get_info_utente);
-        $statement->execute(array($idutente));
-        $result = $statement->fetch();
+        $statement->execute(array($nomignolo));
+        $result = $statement -> fetch();
+        
         echo '<div>';
-        echo '<p>Nomignolo: ' . $idutente["nomignolo"] . '</p><p>Nome: ' . $idutente["nome"] . '</p><p>Cognome: ' . $idutente["cognome"] . '</p><p>email: ' . $idutente["email"] . '</p><p>Data di nascita: ' . $idutente["datanascita"] . '</p>';
+        echo '<p>Nomignolo: ' . $result["nomignolo"] . '</p><p>Nome: ' . $result["nome"] . '</p><p>Cognome: ' . $result["cognome"] . '</p><p>email: ' . $result["email"] . '</p><p>Data di nascita: ' . $result["datanascita"] . '</p>';
         echo '</div>';
 
+        
         $statement = $db->prepare(queries::$get_film_utente);
-        $statement->execute(array($idutente));
+        $statement->execute(array($result['idutente']));
+        echo '<hr>';
+        echo "<p>Film recensiti dall'utente:</p>";
         foreach ($statement->fetchAll() as $film) {
-            utilities::filmPreviewReduced($film["titolo"], $film["annoproduzione"], $film["voto"], $film["idfilm"]);
+            utilities::filmPreviewReduced($film["titolo"], $film["annoproduzione"], $film["voto"], $film["idfilm"],$film["testo"]);
         }
         ?>
     </body>
