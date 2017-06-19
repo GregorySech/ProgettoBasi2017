@@ -63,10 +63,10 @@ class utilities {
 
     public static function getNavBarSession() {
         echo '<div class="navbar"><h1>Cineforum</h1>';
-        echo 'Bentornato ' . $_SESSION['nome_utente'];
-        echo '<div><a href = "pagina_utente.php?nomignolo=' . $_SESSION['nome_utente'] . '">Il mio account</a></div>';
-        echo '<div><a href = "logout.php">Logout</a></div>';
-        echo '<div>Inserisci un: </div>';
+        echo '<div>Bentornato: ' . $_SESSION['nome_utente'] . ' - ';
+        echo '<a href = "pagina_utente.php?nomignolo=' . $_SESSION['nome_utente'] . '">Il mio account</a> - ';
+        echo '<a href = "logout.php">Logout</a></div>';
+        echo '<br><div>Inserisci un: </div>';
         echo '<ol>';
         echo '<li><a href="inserimento.php?info=film">Film</a></li>';
         echo '<li><a href="inserimento.php?info=persona">Attore/Registra</a></li>';

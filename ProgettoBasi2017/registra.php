@@ -23,19 +23,63 @@ require 'utilities.php';
             echo "<p><font color=red>Utente già registrato!</font></p>";
         }
         if ($_GET['errore'] == 'mancainput') {
-            echo "<p><font color=red>I campi obbligatori sono nomignolo, password e email!</font>i</p>";
+            echo "<p><font color=red>I campi obbligatori sono nomignolo, password e email!</font></p>";
         }
         if ($_GET['errore'] == 'erroreinput') {
             echo "<p><font color=red>Errore input nel form.</font></p>";
         }
         ?>
         <form method="POST" action="./checkregistrazione.php">
-            <div>Inserisci il Nomignolo:<input type ="text" name="nomignolo"/></div>
-            <div>Inserisci la password:<input type ="text" name="password"/></div>
-            <div>Inserisci il nome:<input type ="text" name="nome"/></div>
-            <div>Inserisci il cognome:<input type ="text" name="cognome"/></div>
-            <div>Inserisci la email:<input type ="text" name="email"/></div>
-            <div>Inserisci la data di nascita (AAAA-MM-GG):<input type ="text" name="data"/></div>
+            <table>
+                <tr>
+                    <td>
+                        Inserisci il Nomignolo:
+                    </td>
+                    <td>
+                        <input type ="text" name="nomignolo"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Inserisci la password:
+                    </td>
+                    <td>
+                        <input type ="text" name="password"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Inserisci il nome:
+                    </td>
+                    <td>
+                        <input type ="text" name="nome"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Inserisci il cognome:
+                    </td>
+                    <td>
+                        <input type ="text" name="cognome"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Inserisci la email:
+                    </td>
+                    <td>
+                        <input type ="text" name="email"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Inserisci la data di nascita (AAAA-MM-GG):
+                    </td>
+                    <td>
+                        <input type ="text" name="data"/>
+                    </td>
+                </tr>
+            </table>
             <input type="submit" value="Registrati"/>
         </form>
     </body>
