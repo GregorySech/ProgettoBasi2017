@@ -30,9 +30,12 @@ class queries {
       t text,
       ap integer,
       tr text,
-      d integer)
+      d integer,
+      attori integer[],
+      registi integer[],
+      casecinem integer[])
      */
-    public static $new_film = 'select progettodb.new_film(?, ?, ?, ?)';
+    public static $new_film = 'select progettodb.new_film(?, ?, ?, ?, ?, ?, ?)';
 
     /**
       progettodb.progettodb.new_casacinem(n text, ap text, tr date)
@@ -65,15 +68,12 @@ class queries {
             order by r.datarecensione desc';
     public static $get_films = 'select f.titolo, f.annoproduzione, f.idfilm, f.punteggio from progettodb.film as f order by f.punteggio desc';
     public static $get_films_name = 'select f.titolo, f.annoproduzione, f.idfilm, f.punteggio from progettodb.film as f order by f.titolo asc';
-    
     public static $get_info_utente = 'select *
             from progettodb.utenti
             where nomignolo = ?';
-
     public static $get_film_utente = 'select f.idfilm,f.titolo,f.annoproduzione,r.voto,r.testo
             from progettodb.film as f join progettodb.recensioni as r on f.idfilm = r.idfilm
             where r.idutente = ?';
-
     public static $get_registi_film = 'select pc.nome, pc.cognome 
             from progettodb.direzioni as d, progettodb.personecinematografiche as pc
             where d.film = ? and d.regista = pc.idpersona';

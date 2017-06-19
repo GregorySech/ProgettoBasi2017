@@ -63,7 +63,7 @@ class inserimento {
         foreach ($db->query(queries::$get_case_cinematografiche) as $casa) {
             echo '<div>';
             echo $casa['nome'];
-            echo '<input type="checkbox" name="attori[]" value="' . $casa['idcasa'] . '"/>';
+            echo '<input type="checkbox" name="case[]" value="' . $casa['idcasa'] . '"/>';
             echo '</div>';
         }
 
@@ -158,6 +158,10 @@ $page = new inserimento();
             case 'personainserita':
                 echo "<p><font color=red>Persona cinematografica inserita.</font></p>";
                 $page->getFormAttore();
+                break;
+            case 'filminserito':
+                echo "<p><font color=red>Film inserito.</font></p>";
+                $page->getFormFilm();
                 break;
             default:
 
