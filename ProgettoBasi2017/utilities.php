@@ -104,4 +104,5 @@ class utilities {
         echo "<div>Voto: $voto<br>$testo</div>";
         echo '</div><br>';
     }
+
 }
