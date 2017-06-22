@@ -68,7 +68,7 @@ require 'utilities.php';
                         Inserisci la email:
                     </td>
                     <td>
-                        <input type ="text" name="email"/>
+                        <input type ="email" name="email"/>
                     </td>
                 </tr>
                 <tr>
