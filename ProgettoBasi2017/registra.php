@@ -23,7 +23,7 @@ require 'utilities.php';
             echo "<p><font color=red>Utente già registrato!</font></p>";
         }
         if ($_GET['errore'] == 'mancainput') {
-            echo "<p><font color=red>I campi obbligatori sono nomignolo, password e email!</font></p>";
+            echo "<p><font color=red>I campi obbligatori sono nomignolo, password, email e data di nascita!</font></p>";
         }
         if ($_GET['errore'] == 'erroreinput') {
             echo "<p><font color=red>Errore input nel form.</font></p>";
